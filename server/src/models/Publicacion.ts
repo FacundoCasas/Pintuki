@@ -3,15 +3,11 @@ class Publicacion {
     private id : number;
     private url: string;
     private titulo: String;
-    private descripcion: string;
-    private likes: number;
     private autor: string;
     private etiquetas:string;
-    constructor(id:number,url: string,titulo: String,descripcion: string, likes: number, autor:string, etiquetas:string) {
+    constructor(id:number,url: string,titulo: String, autor:string, etiquetas:string) {
         this.url = url;
         this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.likes = likes;
         this.autor = autor;
         this.etiquetas = etiquetas;
         this.id = id;
