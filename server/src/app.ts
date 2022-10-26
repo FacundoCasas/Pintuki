@@ -1,15 +1,15 @@
 import express from 'express';
 import { PublicacionReducidaRouter } from './routes/PublicacionRoutes';
-
+import cors from 'cors';
 
 const app = express();
 const port = 3000;
+app.use(cors())
+app.use(express.json())
 
 app.get('/ping', (req, res) => {
     res.send('pong');
 });
-
-app.use(express.json())
 
 app.use("/publicaciones", PublicacionReducidaRouter)
 
