@@ -14,7 +14,7 @@ export default function ProfileScreen({ navigation }) {
       {isAuthenticated ? (
         <Text style={styles.title}>¡Hola {name}!</Text>
       ) : (
-        <Text style={styles.title}>¡Hola terrícola!</Text>
+        <Text style={styles.title}>¡Hola Pintuker!</Text>
       )}
       <Text style={styles.subtitle}>
         Iniciá sesión para acceder a más contenido

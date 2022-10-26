@@ -4,10 +4,18 @@ import { StyleSheet, Text, View } from "react-native";
 export default function BusquedaScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Pantalla de busqueda</Text>
+      <Card>
+      <div class="containerLogin">
+        <Text style={styles.title}>Pantalla de busqueda</Text>
+      </div>
+      </Card>
+      
     </View>
   );
 }
+
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -18,5 +26,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: "500",
+  },
+  containerLogin: {
+    flex: 1,
+    
   },
 });
