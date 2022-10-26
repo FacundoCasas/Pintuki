@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function NotificationsScreen() {
+export default function NuevoPosteoScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Pantalla de notificaciones</Text>
+      <Text style={styles.title}>Pantalla de posteo nuevo</Text>
     </View>
   );
 }
