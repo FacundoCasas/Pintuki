@@ -9,6 +9,7 @@ export default function LoginScreen() {
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -16,6 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   title: {
+    
     fontSize: 20,
   },
 });
