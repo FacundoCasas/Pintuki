@@ -4,7 +4,6 @@ import HomeNavigator from "./navigation/HomeNavigator";
 import ProfileNavigator from "./navigation/ProfileNavigator";
 
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import BusquedaScreen from "./screens/BusquedaScreen";
 import NuevoPosteoScreen from "./screens/NuevoPosteoScreen";
 
 const Tab = createBottomTabNavigator();
@@ -26,17 +25,6 @@ export default function AppNavigator() {
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
           headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="Busqueda"
-        component={BusquedaScreen}
-        options={{
-          headerShown: false,
-          tabBarLabel: "Busqueda",
-          tabBarIcon: ({ size, color }) => (
-            <MaterialCommunityIcons name="magnify" color={color} size={size} />
-          ),
         }}
       />
       <Tab.Screen
