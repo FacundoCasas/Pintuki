@@ -6,6 +6,7 @@ export const PublicacionReducidaRouter = express.Router();
 const publicacionService : PublicacionService = new PublicacionService();
 
 PublicacionReducidaRouter.get('', async (req, res) => {
+    console.log("publicaciones",await publicacionService.findAll())
     res.json( await publicacionService.findAll())
 })
   

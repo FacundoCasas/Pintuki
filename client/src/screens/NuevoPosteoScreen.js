@@ -1,10 +1,25 @@
 import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { getPublicaciones } from '../services/PublicacionService';
 
 export default function App() {
-  const [selectedImage, setSelectedImage] = React.useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const [publicaciones, setPublicaciones] = useState([]);
+
+  useEffect(() => {
+    getPublicaciones().then(response => response.json())
+        .then(response => {
+            console.log(response)
+            response.results.map(publicaciones => { publicaciones.count = 0 })
+            setPublicaciones(response.results);
+        }).catch(error => {
+            console.log(error);
+        });
+  }, []);
+
 
   const openImagePickerAsync = async () => {
     const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
@@ -20,7 +35,7 @@ export default function App() {
     }
 
     setSelectedImage({ localUri: pickerResult.uri });
-    console.log('uri de la imagen',pickerResult.uri)
+    console.log('Prueba de peticion de publicaciones',publicaciones)
   };
 
   const openShareDialogAsync = async () => {
