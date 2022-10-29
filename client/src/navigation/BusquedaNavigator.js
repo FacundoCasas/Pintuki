@@ -1,23 +1,23 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import DetailsScreen from "../screens/DetailsScreen";
-import DrawerNavigator from "./DrawerNavigator";
+import BusquedaScreen from "../screens/BusquedaScreen";
+import HomeScreen from "../screens/HomeScreen";
 
 const Stack = createNativeStackNavigator();
 
 export default function BusquedaNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Drawer">
+    <Stack.Navigator initialRouteName="Busqueda">
       <Stack.Screen
-        name="Drawer"
-        component={DrawerNavigator}
+        name="Busqueda"
+        component={BusquedaScreen}
         options={{
           headerShown: false,
         }}
       />
       <Stack.Screen
-        name="Details"
-        component={DetailsScreen}
+        name="Home"
+        component={HomeScreen}
         options={{
           headerShown: false,
         }}

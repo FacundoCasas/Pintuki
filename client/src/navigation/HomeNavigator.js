@@ -1,7 +1,9 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import DetailsScreen from "../screens/DetailsScreen";
-import DrawerNavigator from "./DrawerNavigator";
+import BusquedaScreen from "../screens/BusquedaScreen";
+import HomeScreen from "../screens/HomeScreen";
+//import DrawerNavigator from "./DrawerNavigator";
+//import BusquedaNavigator from "./BusquedaNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -9,15 +11,20 @@ export default function HomeNavigator() {
   return (
     <Stack.Navigator initialRouteName="Drawer">
       <Stack.Screen
-        name="Drawer"
-        component={DrawerNavigator}
+        name="Home"
+        component={HomeScreen}
         options={{
-          headerShown: false,
+          headerTitle: "Bienvenido a Pintuki",
+          headerTintColor: "white",
+          headerStyle: {
+            backgroundColor: "teal",
+          },
+          headerTitleAlign: "center",
         }}
       />
       <Stack.Screen
-        name="Details"
-        component={DetailsScreen}
+        name="Busqueda"
+        component={BusquedaScreen}
         options={{
           headerShown: false,
         }}
