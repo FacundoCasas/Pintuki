@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
+  SafeAreaView,
   Button,
   Image,
   FlatList
@@ -15,6 +16,7 @@ export default function HomeScreen({ navigation }) {
   };
 
   //Lista hardcodeada, es solo para probar.
+  //Deberia usar use effect para traer las publicaciones con etiquetas del usuario
   const publicaciones = [ 
     {"nombre":"imagen1","imagen": "Texto de relleno1", id: "01"},
     {"nombre":"imagen2","imagen": "Texto de relleno2", id: "02"},
@@ -35,20 +37,32 @@ export default function HomeScreen({ navigation }) {
     {"nombre":"imagen17","imagen": "Texto de relleno17", id: "17"},
     {"nombre":"imagen18","imagen": "Texto de relleno18", id: "18"},
     {"nombre":"imagen19","imagen": "Texto de relleno19", id: "19"},
+    {"nombre":"imagen20","imagen": "Texto de relleno20", id: "20"},
+    {"nombre":"imagen21","imagen": "Texto de relleno21", id: "21"},
+    {"nombre":"imagen22","imagen": "Texto de relleno22", id: "22"},
+    {"nombre":"imagen23","imagen": "Texto de relleno23", id: "23"},
+    {"nombre":"imagen24","imagen": "Texto de relleno24", id: "24"},
+    {"nombre":"imagen25","imagen": "Texto de relleno25", id: "25"},
+    {"nombre":"imagen26","imagen": "Texto de relleno26", id: "26"},
+    {"nombre":"imagen27","imagen": "Texto de relleno27", id: "27"},
+    {"nombre":"imagen28","imagen": "Texto de relleno28", id: "28"},
+    {"nombre":"imagen29","imagen": "Texto de relleno29", id: "29"},
     ]
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.buttonContainer}>
         <Button title="Seleccionar intereses" onPress={goToBusqueda} color="teal" />
       </View>
       <FlatList
-        data = {publicaciones}
-        keyExtractor = { (item) => item.id}
-        renderItem = { ({item, index}) => <PublicacionFlatList item = {item} />}
-        ItemSeparatorComponent = { () => <View style = {{ marginBottom: 10}} />}
+        data={publicaciones}
+        keyExtractor={ (item) => item.id}
+        renderItem={ ({item, index}) => <PublicacionFlatList item = {item} />}
+        columnWrapperStyle={{justifyContent: 'space-between', marginBottom: 10}}        
+        //initialNumToRender={15}
+        numColumns={2}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 

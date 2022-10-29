@@ -7,7 +7,7 @@ const PublicacionFlatList = ({item}) => {
 
     return (
         <View style = {styles.container}>
-            <Text>{ nombre } - { imagen } </Text>
+            <Text>{ imagen } </Text>
         </View> 
     )
 }
