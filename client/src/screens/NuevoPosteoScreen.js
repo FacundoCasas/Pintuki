@@ -29,7 +29,10 @@ export default function App() {
       return;
     }
 
-    const pickerResult = await ImagePicker.launchImageLibraryAsync();
+    const pickerResult = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing : true,
+      aspect:[3,4]
+    });
     if (pickerResult.cancelled === true) {
       return;
     }
