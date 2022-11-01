@@ -22,7 +22,12 @@ PublicacionReducidaRouter.delete('/:id', async (req, res) => {
 
 PublicacionReducidaRouter.get('/:id', async (req, res) => {  
     console.log(req.params.id)  
-    res.json( await publicacionService.get(Number(req.params.id)) )    
+    const publicacion = await publicacionService.get(Number(req.params.id));
+    if(publicacion !== null){
+        res.json( { publicacion })
+    }else{
+        res.json({ "resultado":`No se encontro la publicacion con el id : ${req.params.id}` })
+    }    
 })
 
 

@@ -16,7 +16,7 @@ class PublicacionService {
         try {
             return await this.publicacionRepository.get(Number(clave));
         } catch(e) {
-            throw e
+            return null;
         }
     }
 
