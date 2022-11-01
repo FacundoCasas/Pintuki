@@ -1,5 +1,6 @@
 import express from 'express';
 import { PublicacionReducidaRouter } from './routes/PublicacionRoutes';
+import { UsuarioRouter } from './routes/UsuarioRoutes';
 import cors from 'cors';
 
 const app = express();
@@ -12,7 +13,7 @@ app.get('/ping', (req, res) => {
 });
 
 app.use("/publicaciones", PublicacionReducidaRouter)
-
+app.use("/usuarios", UsuarioRouter)
 
 app.listen(port, () => {
     return console.log(`Server is listening on ${port}`);
