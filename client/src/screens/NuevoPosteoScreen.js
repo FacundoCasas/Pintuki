@@ -1,13 +1,20 @@
 import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing';
 import React, { useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View,TextInput } from 'react-native';
 import { getPublicaciones } from '../services/PublicacionService';
 
 export default function App() {
-  const [selectedImage, setSelectedImage] = useState(null);
+  
+  const [formData,setFormData] = useState({
+    selectedImage:null,
+    titulo:'',
+    categoria:''
+})
+  
+  //const [selectedImage, setSelectedImage] = useState(null);
 
-  const [publicaciones, setPublicaciones] = useState([]);
+/*   const [publicaciones, setPublicaciones] = useState([]);
 
   useEffect(() => {
     getPublicaciones().then(response => response.json())
@@ -18,7 +25,7 @@ export default function App() {
         }).catch(error => {
             console.log(error);
         });
-  }, []);
+  }, []); */
 
 
   const openImagePickerAsync = async () => {
@@ -54,6 +61,23 @@ export default function App() {
     return (
       <View style={styles.container}>
         <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
+        <TextInput
+          /* style={styles.input} 
+            onChangeText={onChangeText}*/
+          id="Titulo"
+          placeholder="Titulo"
+          required={true}
+          value={formData.title}
+        />  
+        <TextInput
+          /* style={styles.input} 
+            onChangeText={onChangeText}*/
+          id="categoria"
+          placeholder="categoria"
+          required={true}
+          value={formData.categoria}
+        />  
+
         <TouchableOpacity onPress={openShareDialogAsync} style={styles.button}>
           <Text style={styles.buttonText}>Share this photo</Text>
         </TouchableOpacity>
@@ -70,6 +94,23 @@ export default function App() {
       <Text style={styles.instructions}>
         To share a photo from your phone with a friend, just press the button below!
       </Text>
+
+      <TextInput
+          /* style={styles.input} 
+            onChangeText={onChangeText}*/
+          id="Titulo"
+          placeholder="Titulo"
+          required={true}
+          value={formData.title}
+        />  
+        <TextInput
+          /* style={styles.input} 
+            onChangeText={onChangeText}*/
+          id="categoria"
+          placeholder="categoria"
+          required={true}
+          value={formData.categoria}
+        />  
 
       <TouchableOpacity onPress={openImagePickerAsync} style={styles.button}>
         <Text style={styles.buttonText}>Pick a photo</Text>
