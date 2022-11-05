@@ -6,7 +6,7 @@ import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, C
 
 
 
-    export default function LoginScreen ({navigation}){
+    export default function LogInScreen ({navigation}){
         return (
           <NativeBaseProvider>
             <Center flex={1} px="3" w="100%">
