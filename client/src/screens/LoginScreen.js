@@ -16,7 +16,7 @@ import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, C
                 <LogoPintuki/>
 
                 <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{ color: "warmGray.50" }}>
-                Iniciar Sesión
+                Registrarte
                 </Heading>
             </Center>
 
@@ -28,25 +28,15 @@ import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, C
           <FormControl>
             <FormControl.Label>Constraseña</FormControl.Label>
             <Input type="password" />
-            
+          </FormControl>
+          <FormControl>
+            <FormControl.Label>Ingresa tu constraseña nuevamente</FormControl.Label>
+            <Input type="password" />
           </FormControl>
           <Button mt="2" colorScheme="indigo">
-            Iniciar Sesión
+            Registrarse
           </Button>
-          <HStack mt="6" justifyContent="center">
-            <Text fontSize="sm" color="coolGray.600" _dark={{
-            color: "warmGray.200"
-          }}>
-              ¿Todavia no tenes cuenta?.{" "}
-            </Text>
-            <Link _text={{
-            color: "indigo.500",
-            fontWeight: "medium",
-            fontSize: "sm"
-          }} onPress={() => navigation.navigate("SignIn")}>
-              Registrate!
-            </Link>
-          </HStack>
+         
         </VStack>
       </Box>
     </Center>

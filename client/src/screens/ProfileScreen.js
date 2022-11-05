@@ -44,7 +44,7 @@ import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, C
             color: "indigo.500",
             fontWeight: "medium",
             fontSize: "sm"
-          }} onPress={() => navigation.navigate("Login")}>
+          }} onPress={() => navigation.navigate("LogIn")}>
               Registrate!
             </Link>
           </HStack>
