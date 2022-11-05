@@ -1,122 +1,45 @@
-import * as ImagePicker from 'expo-image-picker';
-import * as Sharing from 'expo-sharing';
 import React, { useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View,TextInput } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View,TextInput,SafeAreaView } from 'react-native';
 import { getPublicaciones } from '../services/PublicacionService';
+import SeleccionarImagen from '../components/SeleccionarImagen'
 
 export default function App() {
   
-  const [formData,setFormData] = useState({
-    selectedImage:null,
-    titulo:'',
-    categoria:''
-})
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [titulo, setTitulo] = useState('');
+  //Tienen que consumirse de la base y agregar el componente de categorias
+  const [categoria, setCategoria] = useState('');
   
-  //const [selectedImage, setSelectedImage] = useState(null);
-
-/*   const [publicaciones, setPublicaciones] = useState([]);
-
-  useEffect(() => {
-    getPublicaciones().then(response => response.json())
-        .then(response => {
-            console.log(response)
-            response.results.map(publicaciones => { publicaciones.count = 0 })
-            setPublicaciones(response.results);
-        }).catch(error => {
-            console.log(error);
-        });
-  }, []); */
-
-
-  const openImagePickerAsync = async () => {
-    const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
-
-    if (permissionResult.granted === false) {
-      alert('Permission to access camera roll is required!');
-      return;
-    }
-
-    const pickerResult = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing : true,
-      aspect:[3,4]
-    });
-    if (pickerResult.cancelled === true) {
-      return;
-    }
-
-    setSelectedImage({ localUri: pickerResult.uri });
-    console.log('Prueba de peticion de publicaciones',publicaciones)
+  const publicar = async () => {
+    console.log(selectedImage.localUri,titulo,categoria)
   };
-
-  const openShareDialogAsync = async () => {
-    if (!(await Sharing.isAvailableAsync())) {
-      alert(`Uh oh, sharing isn't available on your platform`);
-      return;
-    }
-
-    await Sharing.shareAsync(selectedImage.localUri);
-  };
-
-  if (selectedImage !== null) {
-    return (
-      <View style={styles.container}>
-        <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
-        <TextInput
-          /* style={styles.input} 
-            onChangeText={onChangeText}*/
-          id="Titulo"
-          placeholder="Titulo"
-          required={true}
-          value={formData.title}
-        />  
-        <TextInput
-          /* style={styles.input} 
-            onChangeText={onChangeText}*/
-          id="categoria"
-          placeholder="categoria"
-          required={true}
-          value={formData.categoria}
-        />  
-
-        <TouchableOpacity onPress={openShareDialogAsync} style={styles.button}>
-          <Text style={styles.buttonText}>Share this photo</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={openImagePickerAsync} style={styles.button}>
-          <Text style={styles.buttonText}>Change the photo</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
-
-  return (
-    <View style={styles.container}>
-      <Image source={{ uri: 'https://i.imgur.com/TkIrScD.png' }} style={styles.logo} />
-      <Text style={styles.instructions}>
-        To share a photo from your phone with a friend, just press the button below!
-      </Text>
-
+ 
+return (
+  <View style={styles.container}>
+    <SafeAreaView>
+      <SeleccionarImagen
+        selectedImage={selectedImage}
+        setSelectedImage={setSelectedImage}
+      />
       <TextInput
-          /* style={styles.input} 
-            onChangeText={onChangeText}*/
-          id="Titulo"
-          placeholder="Titulo"
-          required={true}
-          value={formData.title}
-        />  
-        <TextInput
-          /* style={styles.input} 
-            onChangeText={onChangeText}*/
-          id="categoria"
-          placeholder="categoria"
-          required={true}
-          value={formData.categoria}
-        />  
-
-      <TouchableOpacity onPress={openImagePickerAsync} style={styles.button}>
-        <Text style={styles.buttonText}>Pick a photo</Text>
+        style={styles.input}
+        onChangeText={setTitulo}
+        value={titulo}
+        placeholder="Titulo"
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={setCategoria}
+        value={categoria}
+        placeholder="Categoria"
+      />
+      <TouchableOpacity onPress={publicar} style={styles.button}>
+        <Text style={styles.buttonText}>Publicar</Text>
       </TouchableOpacity>
-    </View>
-  );
+    </SafeAreaView> 
+
+  </View>
+);
 }
 
 const styles = StyleSheet.create({
@@ -150,5 +73,11 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     resizeMode: 'contain',
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
   },
 });
