@@ -1,47 +1,56 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import React from 'react';
 
-export default function ProfileScreen({ navigation }) {
-  const isAuthenticated = false;
-  const [name, setName] = useState("");
+import LogoPintuki from "../components/LogoPintuki.js";
 
-  const goHome = () => {
-    navigation.navigate("HomeStack", { screen: "Home" });
-  };
+import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider, Image } from "native-base";
 
-  return (
-    <View style={styles.container}>
-      {isAuthenticated ? (
-        <Text style={styles.title}>¡Hola {name}!</Text>
-      ) : (
-        <Text style={styles.title}>¡Hola terrícola!</Text>
-      )}
-      <Text style={styles.subtitle}>
-        Iniciá sesión para acceder a más contenido
-      </Text>
-      <Button
-        title="Iniciar sesión"
-        onPress={() => navigation.navigate("Login")}
-        color="teal"
-      />
-      <Button title="Ir al inicio" onPress={goHome} color="teal" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "space-around",
-    margin: 10,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "500",
-  },
-  subtitle: {
-    fontSize: 16,
-    fontWeight: "500",
-  },
-});
+
+    export default function ProfileScreen ({navigation}){
+        return (
+          <NativeBaseProvider>
+            <Center flex={1} px="3" w="100%">
+              <Box safeArea p="2" py="8" w="90%" maxW="290" >
+
+                <Center>
+                <Image size={90} borderRadius={100} borderWidth={2} borderColor={"black"} m="3" source={{
+        uri: "https://i.ibb.co/KjFFfmq/diego-pintuki-01.jpg" }} alt="LogoPintuki" />
+
+              <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{ color: "warmGray.50" }}>
+                Iniciar Sesión
+              </Heading>
+            </Center>
+
+        <VStack space={3} mt="5">
+          <FormControl>
+            <FormControl.Label>Nombre de Usuario</FormControl.Label>
+            <Input />
+          </FormControl>
+          <FormControl>
+            <FormControl.Label>Constraseña</FormControl.Label>
+            <Input type="password" />
+            
+          </FormControl>
+          <Button mt="2" colorScheme="indigo">
+            Iniciar Sesión
+          </Button>
+          <HStack mt="6" justifyContent="center">
+            <Text fontSize="sm" color="coolGray.600" _dark={{
+            color: "warmGray.200"
+          }}>
+              ¿Todavia no tenes cuenta?.{" "}
+            </Text>
+            <Link _text={{
+            color: "indigo.500",
+            fontWeight: "medium",
+            fontSize: "sm"
+          }} onPress={() => navigation.navigate("LogIn")}>
+              Registrate!
+            </Link>
+          </HStack>
+        </VStack>
+      </Box>
+    </Center>
+          </NativeBaseProvider>
+        );
+    };

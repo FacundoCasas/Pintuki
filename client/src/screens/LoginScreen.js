@@ -1,23 +1,45 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react';
 
-export default function LoginScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Pantalla de login</Text>
-    </View>
-  );
-}
+import LogoPintuki from "../components/LogoPintuki.js";
+
+import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider, Image } from "native-base";
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "space-around",
-  },
-  title: {
-    
-    fontSize: 20,
-  },
-});
+
+    export default function LoginScreen ({navigation}){
+        return (
+          <NativeBaseProvider>
+            <Center flex={1} px="3" w="100%">
+              <Box safeArea p="2" py="8" w="90%" maxW="290" >
+
+            <Center>
+                <LogoPintuki/>
+
+                <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{ color: "warmGray.50" }}>
+                Registrarte
+                </Heading>
+            </Center>
+
+        <VStack space={3} mt="5">
+          <FormControl>
+            <FormControl.Label>Nombre de Usuario</FormControl.Label>
+            <Input />
+          </FormControl>
+          <FormControl>
+            <FormControl.Label>Constraseña</FormControl.Label>
+            <Input type="password" />
+          </FormControl>
+          <FormControl>
+            <FormControl.Label>Ingresa tu constraseña nuevamente</FormControl.Label>
+            <Input type="password" />
+          </FormControl>
+          <Button mt="2" colorScheme="indigo">
+            Registrarse
+          </Button>
+         
+        </VStack>
+      </Box>
+    </Center>
+          </NativeBaseProvider>
+        );
+    };
