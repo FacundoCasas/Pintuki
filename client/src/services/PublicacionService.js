@@ -1,10 +1,21 @@
 import { API_PUBLICACIONES } from "../utils/Util";
 
 const getPublicaciones = () => {
-    console.log("url",API_PUBLICACIONES)
     return fetch(API_PUBLICACIONES);
 }
 
+const postPublicacion = async (publicacion) => {
+    return fetch(API_PUBLICACIONES, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(publicacion)
+        })
+        .then(response => response.json()) 
+        .then(json => console.log(json)) 
+        .catch(err => console.log(err)); 
+}
+
 export {
-    getPublicaciones
+    getPublicaciones,
+    postPublicacion
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View,TextInput,SafeAreaView } from 'react-native';
-import { getPublicaciones } from '../services/PublicacionService';
+import { postPublicacion } from '../services/PublicacionService';
 import SeleccionarImagen from '../components/SeleccionarImagen'
 
 export default function App() {
@@ -11,7 +11,15 @@ export default function App() {
   const [categoria, setCategoria] = useState('');
   
   const publicar = async () => {
-    console.log(selectedImage.localUri,titulo,categoria)
+    //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
+    let publicacion = {
+      id:"9",
+      url: selectedImage.localUri,
+      titulo: titulo,
+      autor:"admin",
+      etiquetas: categoria
+  };
+   await postPublicacion(publicacion)
   };
  
 return (
@@ -37,7 +45,6 @@ return (
         <Text style={styles.buttonText}>Publicar</Text>
       </TouchableOpacity>
     </SafeAreaView> 
-
   </View>
 );
 }
