@@ -17,13 +17,18 @@ export default function HomeScreen({ navigation }) {
 
   useEffect(async () => {
     const response = await getPublicaciones();
-    console.log("publicaciones useEffect:", response.json())
+    console.log("publicaciones useEffect:", response)
     setPublicaciones(response)
 }, []);
 
   const goToBusqueda = () => {
     navigation.navigate("Busqueda");
   };
+
+  const goToPublicacion = (id)=>{
+
+  }
+
 
   return (
     <SafeAreaView style={styles.container}>

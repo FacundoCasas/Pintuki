@@ -1,28 +1,18 @@
+import axios from 'axios'
 import { API_PUBLICACIONES } from "../utils/Util";
 
-const getPublicaciones = () => {
-    return fetch(API_PUBLICACIONES)
+const getPublicaciones = async () => {
+    const response = await axios.get(API_PUBLICACIONES)
+    return response.data
 }
 
 const getPublicacion = async (id) => {
-    return fetch(API_PUBLICACIONES+`/${id}`, {
-        method: "GET",
-        headers: {'Content-Type': 'application/json'}
-        })
-        .then(response => response.json()) 
-        .then(json => console.log(json)) 
-        .catch(err => console.log(err)); 
+    const response = await axios.get(API_PUBLICACIONES+`/${id}`)
+    return response.data
 }
 
 const postPublicacion = async (publicacion) => {
-    return fetch(API_PUBLICACIONES, {
-        method: "POST",
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(publicacion)
-        })
-        .then(response => response.json()) 
-        .then(json => console.log(json)) 
-        .catch(err => console.log(err)); 
+    return await axios.post(API_PUBLICACIONES,{publicacion})
 }
 
 export {

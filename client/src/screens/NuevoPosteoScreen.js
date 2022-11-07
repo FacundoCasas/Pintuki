@@ -22,10 +22,6 @@ export default function App() {
     await postPublicacion(publicacion)
   };
 
-  redirectPublicacion = (id)=>{
-
-  }
-
   return (
     <View style={styles.container}>
       <SafeAreaView>
