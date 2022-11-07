@@ -1,52 +1,59 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View,TextInput,SafeAreaView } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, SafeAreaView } from 'react-native';
 import { postPublicacion } from '../services/PublicacionService';
 import SeleccionarImagen from '../components/SeleccionarImagen'
 
 export default function App() {
-  
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [titulo, setTitulo] = useState('');
   //Tienen que consumirse de la base y agregar el componente de categorias
   const [categoria, setCategoria] = useState('');
-  
+
   const publicar = async () => {
     //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
     let publicacion = {
-      id:"9",
+      id: 9,
       url: selectedImage.localUri,
       titulo: titulo,
-      autor:"admin",
+      autor: "admin",
       etiquetas: categoria
+    };
+    await postPublicacion(publicacion)
   };
-   await postPublicacion(publicacion)
-  };
- 
-return (
-  <View style={styles.container}>
-    <SafeAreaView>
-      <SeleccionarImagen
-        selectedImage={selectedImage}
-        setSelectedImage={setSelectedImage}
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={setTitulo}
-        value={titulo}
-        placeholder="Titulo"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={setCategoria}
-        value={categoria}
-        placeholder="Categoria"
-      />
-      <TouchableOpacity onPress={publicar} style={styles.button}>
-        <Text style={styles.buttonText}>Publicar</Text>
-      </TouchableOpacity>
-    </SafeAreaView> 
-  </View>
-);
+
+  redirectPublicacion = (id)=>{
+
+  }
+
+  return (
+    <View style={styles.container}>
+      <SafeAreaView>
+        <SeleccionarImagen
+          selectedImage={selectedImage}
+          setSelectedImage={setSelectedImage}
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={setTitulo}
+          value={titulo}
+          placeholder="Titulo"
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={setCategoria}
+          value={categoria}
+          placeholder="Categoria"
+        />
+        <TouchableOpacity onPress={publicar} style={styles.button}>
+          <Text style={styles.buttonText}>Publicar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={redirectPublicacion(1)} style={styles.button}>
+          <Text style={styles.buttonText}>ver publicacion</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

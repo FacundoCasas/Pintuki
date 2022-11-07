@@ -1,7 +1,17 @@
 import { API_PUBLICACIONES } from "../utils/Util";
 
 const getPublicaciones = () => {
-    return fetch(API_PUBLICACIONES);
+    return fetch(API_PUBLICACIONES)
+}
+
+const getPublicacion = async (id) => {
+    return fetch(API_PUBLICACIONES+`/${id}`, {
+        method: "GET",
+        headers: {'Content-Type': 'application/json'}
+        })
+        .then(response => response.json()) 
+        .then(json => console.log(json)) 
+        .catch(err => console.log(err)); 
 }
 
 const postPublicacion = async (publicacion) => {
@@ -17,5 +27,6 @@ const postPublicacion = async (publicacion) => {
 
 export {
     getPublicaciones,
-    postPublicacion
+    postPublicacion,
+    getPublicacion
 }

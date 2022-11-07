@@ -3,11 +3,11 @@ import { StyleSheet, View, Text } from "react-native";
 
 const PublicacionFlatList = ({item}) => {
 
-    const {nombre, imagen, id} = item
+    //const {nombre, url, id} = item
 
     return (
         <View style = {styles.container}>
-            <Text>{ imagen } </Text>
+            <Text>HOla </Text>
         </View> 
     )
 }
