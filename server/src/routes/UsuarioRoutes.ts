@@ -11,7 +11,7 @@ UsuarioRouter.get('', async (req, res) => {
 })
   
 UsuarioRouter.post('', async (req, res) => {   
-    await usuarioService.add(req);
+    await usuarioService.add(req.body.usuario);
     res.json( {"resultado": "ok"} )
 })
 
@@ -23,6 +23,11 @@ UsuarioRouter.delete('/:id', async (req, res) => {
 UsuarioRouter.get('/:id', async (req, res) => {  
     console.log(req.params.id)  
     res.json( await usuarioService.get(Number(req.params.id)) )    
+})
+
+UsuarioRouter.post('/login', async (req, res) => {  
+    console.log(req.body.clave)  
+    res.json( await usuarioService.login(req.body.clave) )    
 })
 
 

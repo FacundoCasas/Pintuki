@@ -10,7 +10,8 @@ class UsarioService {
 
     async add(u : any) {
         // mapper de personaDto a Persona
-        return await this.usuarioRepository.add(new Usuario(u.id, u.usuario, u.contrasenia, u.publicacionesFavoritas, u.publicacionesCreadas, u.fotoPerfil));
+        return await this.usuarioRepository.add(new Usuario(u.id, u.usuario, u.contrasenia, "https://i.ibb.co/KjFFfmq/diego-pintuki-01.jpg"));
+        //u.fotoPerfil
     }                                               
     async get(clave : any) {
         try {
@@ -25,7 +26,13 @@ class UsarioService {
         return await this.usuarioRepository.delete(Number(clave));
     }
 
-
+    async login(clave : any) {
+        try {
+            return await this.usuarioRepository.login((clave));
+        } catch(e) {
+            throw e
+        }
+    }
 }
 
 export default UsarioService

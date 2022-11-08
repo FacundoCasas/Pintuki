@@ -8,13 +8,18 @@ class Usuario {
     private publicacionesFavoritas: Publicacion[];
     private publicacionesCreadas: Publicacion[];
     private fotoPerfil: string;
-    constructor(id:number,usuario: string,contrasenia: string, publicacionesFavoritas:Publicacion[], publicacionesCreadas:Publicacion[], fotoPerfil: string) {
+    constructor(id:number,usuario: string,contrasenia: string, fotoPerfil: string, publicacionesFavoritas?:Publicacion[], publicacionesCreadas?:Publicacion[]) {
         this.id = id;
         this.usuario = usuario;
         this.contrasenia = contrasenia;
-        this.publicacionesFavoritas = publicacionesFavoritas;
-        this.publicacionesCreadas = publicacionesCreadas;
         this.fotoPerfil = fotoPerfil;
+        if(publicacionesCreadas!=null || publicacionesFavoritas!=null){
+            this.publicacionesFavoritas = publicacionesFavoritas;
+            this.publicacionesCreadas = publicacionesCreadas;
+        }else{
+            this.publicacionesFavoritas = [];
+            this.publicacionesCreadas = [];
+        }
     }
 
     //aniadir geters y seters
