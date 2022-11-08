@@ -55,5 +55,19 @@ class UsuarioRepository implements Dao<Usuario,Number> {
             throw new Error("No encontrado");            
         }
     }
+
+
+    async login (clave: any) : Promise<Usuario> {
+        // podria haber un try catch y finally para cerrar la conexion
+        const conexion = await this.conectarMongoDb.conectar();       
+        const collection = conexion.collection('usuario');
+        const findResult = await collection.findOne({usuario: clave.username});
+        await this.conectarMongoDb.desconectar();
+        if(findResult !== null && findResult.contrasenia === clave.password) {
+            return Promise.resolve(new Usuario(findResult.id,findResult.usuario,findResult.contrasenia,findResult.publicacionesFavoritas, findResult.publicacionesCreadas, findResult.fotoPerfil));
+        } else {
+            throw new Error("Usuario o contraseña no encontrado");            
+        }
+    }
 }
 export default UsuarioRepository
