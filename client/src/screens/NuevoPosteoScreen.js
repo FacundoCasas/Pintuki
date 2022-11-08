@@ -44,9 +44,6 @@ export default function App() {
         <TouchableOpacity onPress={publicar} style={styles.button}>
           <Text style={styles.buttonText}>Publicar</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={redirectPublicacion(1)} style={styles.button}>
-          <Text style={styles.buttonText}>ver publicacion</Text>
-        </TouchableOpacity>
       </SafeAreaView>
     </View>
   );

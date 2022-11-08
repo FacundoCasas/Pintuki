@@ -11,6 +11,7 @@ PublicacionReducidaRouter.get('', async (req, res) => {
 })
   
 PublicacionReducidaRouter.post('', async (req, res) => {   
+    console.log(req.body)
     console.log(req.body.publicacion)
     await publicacionService.add(req.body.publicacion);
     res.json( {"resultado": "ok"} )

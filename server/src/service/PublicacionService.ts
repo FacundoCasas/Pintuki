@@ -25,7 +25,7 @@ class PublicacionService {
         return await this.publicacionRepository.delete(Number(clave));
     }
 
-
+    
 }
 
 export default PublicacionService

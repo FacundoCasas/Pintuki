@@ -2,8 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BusquedaScreen from "../screens/BusquedaScreen";
 import HomeScreen from "../screens/HomeScreen";
-//import DrawerNavigator from "./DrawerNavigator";
-//import BusquedaNavigator from "./BusquedaNavigator";
+import PublicacionScreen from "../screens/PublicacionScreen"
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +26,13 @@ export default function HomeNavigator() {
         component={BusquedaScreen}
         options={{
           headerShown: false,
+      }}
+      />
+      <Stack.Screen
+        name="Publicacion"
+        component={PublicacionScreen}
+        options={{
+        headerShown: false,
         }}
       />
     </Stack.Navigator>

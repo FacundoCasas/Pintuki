@@ -20,7 +20,7 @@ export default function BusquedaNavigator() {
         component={HomeScreen}
         options={{
           headerShown: false,
-        }}
+      }}
       />
     </Stack.Navigator>
   );

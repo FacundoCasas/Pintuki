@@ -17,7 +17,7 @@ export default function HomeScreen({ navigation }) {
 
   useEffect(async () => {
     const response = await getPublicaciones();
-    console.log("publicaciones useEffect:", response)
+    //console.log("publicaciones useEffect:", response)
     setPublicaciones(response)
 }, []);
 
@@ -26,22 +26,36 @@ export default function HomeScreen({ navigation }) {
   };
 
   const goToPublicacion = (id)=>{
-
+    console.log("soy el redireccionador uwu y mi id es:",id)
+    navigation.navigate("Publicacion",{itemId:id});
   }
 
+  const renderItem = ({ item }) => {
+    return (
+      <PublicacionFlatList
+        item={item}
+        onPress={() => goToPublicacion(item.id)}
+      />
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.buttonContainer}>
         <Button title="Seleccionar intereses" onPress={goToBusqueda} color="teal" />
       </View>
-      <FlatList
+{/*       <FlatList
         data={publicaciones}
         keyExtractor={ (item) => item.id}
         renderItem={ ({item, index}) => <PublicacionFlatList item = {item} />}
         columnWrapperStyle={{justifyContent: 'space-between', marginBottom: 10}}        
         //initialNumToRender={15}
         numColumns={2}
+      /> */}
+      <FlatList
+        data={publicaciones}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
       />
     </SafeAreaView>
   );

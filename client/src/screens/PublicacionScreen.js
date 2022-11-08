@@ -1,34 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, TextInput, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, Image, View, SafeAreaView } from 'react-native';
 import { getPublicacion } from '../services/PublicacionService';
 
+export default function App({ route, navigation }) {
 
-export default function App(id) {
-
+    const { itemId } = route.params;
     const [publicacion, setPublicacion] = useState(null);
 
-    useEffect(() => {
-        const publicacion = getPublicacion(id);
-        console.log("publicacion:", publicacion)
-        setPublicacion(publicacion)
+    useEffect(async () => {
+        const response = await getPublicacion(itemId);
+        setPublicacion(response)
     }, []);
 
     const agregarFavoritos = async () => {
         //agregarFavoritos del usuario logeado
     };
+        return (
+            <View style={styles.container}>
+            { publicacion && 
+                <SafeAreaView>
+                    <Image source={{ uri: publicacion.url }} style={styles.thumbnail} /> 
+                    <Text>{publicacion.titulo}</Text>
+                </SafeAreaView> 
+            }
+            </View>
+        );
 
-    return (
-        <View style={styles.container}>
-            <SafeAreaView>
-                <Image source={{ uri: publicacion.url }} style={styles.thumbnail} />
-                <Text
-                    style={styles.input}
-                    value={publicacion.titulo}
-                    placeholder="Titulo"
-                />
-            </SafeAreaView>
-        </View>
-    );
 }
 
 const styles = StyleSheet.create({

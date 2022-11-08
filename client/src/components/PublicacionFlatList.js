@@ -1,16 +1,15 @@
 import React from "react";
-import { StyleSheet, View, Text,Image } from "react-native";
+import { StyleSheet, View, Text,Image,TouchableOpacity } from "react-native";
 
-const PublicacionFlatList = ({item}) => {
+const PublicacionFlatList = ({item,onPress}) => {
 
     const {titulo, url, id} = item
 
-    return (
-        <View style = {styles.container}>
+    return(
+        <TouchableOpacity onPress={onPress} style={styles.container}>
             <Image source={{ uri: url }} style={styles.thumbnail}/>
             <Text>{titulo}</Text>
-            <Text>{url}</Text>
-        </View> 
+        </TouchableOpacity>
     )
 }
 

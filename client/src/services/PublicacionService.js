@@ -2,13 +2,13 @@ import axios from 'axios'
 import { API_PUBLICACIONES } from "../utils/Util";
 
 const getPublicaciones = async () => {
-    const response = await axios.get(API_PUBLICACIONES)
+    const response = await axios.get(API_PUBLICACIONES).catch(error => console.log(error));
     return response.data
 }
 
 const getPublicacion = async (id) => {
-    const response = await axios.get(API_PUBLICACIONES+`/${id}`)
-    return response.data
+    const response = await axios.get(API_PUBLICACIONES+`/${id}`).catch(error => console.log(error));
+    return response.data.publicacion
 }
 
 const postPublicacion = async (publicacion) => {
