@@ -25,6 +25,21 @@ class PublicacionRepository implements Dao<Publicacion,Number> {
         findResult.forEach( p => publicaciones.push( 
             new Publicacion(p.id,p.url,p.titulo,p.autor, p.etiquetas)
         ));
+        this.shufflePublicaciones(publicaciones);
+        await this.conectarMongoDb.desconectar();
+        return Promise.resolve(publicaciones);
+    }
+
+    async findCategoria (categoria: String) : Promise<Publicacion[]> {
+        const publicaciones : Array<Publicacion> = [];
+        const conexion = await this.conectarMongoDb.conectar();       
+        const collection = conexion.collection('publicacion');
+        const findResult = await collection.find({etiquetas:categoria}).toArray();
+        // mapper
+        findResult.forEach( p => publicaciones.push( 
+            new Publicacion(p.id,p.url,p.titulo,p.autor, p.etiquetas)
+        ));
+        this.shufflePublicaciones(publicaciones);
         await this.conectarMongoDb.desconectar();
         return Promise.resolve(publicaciones);
     }
@@ -54,6 +69,10 @@ class PublicacionRepository implements Dao<Publicacion,Number> {
         } else {
             throw new Error("No encontrado");            
         }
+    }
+
+    async shufflePublicaciones(publicaciones: any){
+        return await publicaciones.sort(() => Math.random() - 0.5);
     }
 }
 export default PublicacionRepository

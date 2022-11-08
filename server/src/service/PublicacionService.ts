@@ -8,6 +8,10 @@ class PublicacionService {
         return await this.publicacionRepository.findAll();
     }
 
+    async findCategoria(categoria : any) {
+        return await this.publicacionRepository.findCategoria(String(categoria));
+    }
+
     async add(p : any) {
         // mapper de personaDto a Persona
         return await this.publicacionRepository.add(new Publicacion(p.id, p.url,p.titulo,p.autor,p.etiquetas));

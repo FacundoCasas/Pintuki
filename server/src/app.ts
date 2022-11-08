@@ -1,5 +1,5 @@
 import express from 'express';
-import { PublicacionReducidaRouter } from './routes/PublicacionRoutes';
+import { PublicacionRouter } from './routes/PublicacionRoutes';
 import { UsuarioRouter } from './routes/UsuarioRoutes';
 import { CategoriaRouter } from './routes/CategoriaRoutes';
 import cors from 'cors';
@@ -13,7 +13,7 @@ app.get('/ping', (req, res) => {
     res.send('pong');
 });
 
-app.use("/publicaciones", PublicacionReducidaRouter)
+app.use("/publicaciones", PublicacionRouter)
 app.use("/usuarios", UsuarioRouter)
 app.use("/categorias", CategoriaRouter)
 
