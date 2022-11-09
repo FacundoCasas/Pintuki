@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, TextInput, SafeAreaView } from 'react-native';
+//import { Box, Text, Heading, VStack,  Input,  Button, HStack, Center, NativeBaseProvider, Image, useBreakpointValue} from "native-base";
 import { postPublicacion } from '../services/PublicacionService';
 import SeleccionarImagen from '../components/SeleccionarImagen'
 
@@ -22,7 +23,19 @@ export default function App() {
     await postPublicacion(publicacion)
   };
 
+/*
+<NativeBaseProvider>
+      <Center flex={1} px="3" w="100%">
+        <Box safeArea p="2" py="8" w="90%" maxW="290" >
+
+
+        </Box>
+      </Center>
+    <NativeBaseProvider>
+*/
   return (
+    
+
     <View style={styles.container}>
       <SafeAreaView>
         <SeleccionarImagen

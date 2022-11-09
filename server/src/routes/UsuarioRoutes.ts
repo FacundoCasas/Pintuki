@@ -26,7 +26,7 @@ UsuarioRouter.get('/:id', async (req, res) => {
 })
 
 UsuarioRouter.post('/login', async (req, res) => {  
-    console.log(req.body.clave)  
+    console.log("usuarioRoutes", req.body.clave)  
     res.json( await usuarioService.login(req.body.clave) )    
 })
 

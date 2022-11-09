@@ -9,64 +9,21 @@ import { getUsuario } from '../services/UsuarioService.js';
 
 
 
-/*
-
-  const publicar = async () => {
-    //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
-    let publicacion = {
-      id: 9,
-      url: selectedImage.localUri,
-      titulo: titulo,
-      autor: "admin",
-      etiquetas: categoria
-    };
-    await postPublicacion(publicacion)
-  };
-
-  return (
-    <View style={styles.container}>
-      <SafeAreaView>
-        <SeleccionarImagen
-          selectedImage={selectedImage}
-          setSelectedImage={setSelectedImage}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={setTitulo}
-          value={titulo}
-          placeholder="Titulo"
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={setCategoria}
-          value={categoria}
-          placeholder="Categoria"
-        />
-        <TouchableOpacity onPress={publicar} style={styles.button}>
-          <Text style={styles.buttonText}>Publicar</Text>
-        </TouchableOpacity>
-      </SafeAreaView>
-    </View>
-  );
-}
-
-*/
-
-const loginUsuario = async () => {
-  //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
-  let clave = {
-    username: usuario,
-    password: contrasenia
-  };
-  await getUsuario(clave)
-};
-
-
     export default function ProfileScreen ({navigation}){
       
       const [usuario, setUsuario] = useState('');
       const [contrasenia, setContrasenia] = useState('');
       
+      const loginUsuario = async () => {
+        //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
+        let clave = {
+          username: usuario,
+          password: contrasenia
+        };
+        await getUsuario(clave)
+      };
+
+
       return (
           <NativeBaseProvider>
             <Center flex={1} px="3" w="100%">
