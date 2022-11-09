@@ -12,7 +12,7 @@ const getPublicacion = async (id) => {
 }
 
 const postPublicacion = async (publicacion) => {
-    return await axios.post(API_PUBLICACIONES,{publicacion})
+    return await axios.post(API_PUBLICACIONES,{publicacion}).catch(error => console.log(error));
 }
 
 export {

@@ -29,6 +29,7 @@ export default function AppNavigator() {
       />
       <Tab.Screen
         name="NuevoPosteo"
+        //component={user ? NuevoPosteoScreen : Login}
         component={NuevoPosteoScreen}
         options={{
           headerShown: false,
