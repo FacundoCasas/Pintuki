@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PublicacionFlatList from "../components/PublicacionFlatList.js";
+import ButtonFlatList from '../components/ButtonFlatList.js';
 import { getPublicaciones } from "../services/PublicacionService.js";
 import {
   StyleSheet,
@@ -25,37 +26,16 @@ export default function HomeScreen({ navigation }) {
     navigation.navigate("Busqueda");
   };
 
-  const goToPublicacion = (id)=>{
-    console.log("soy el redireccionador uwu y mi id es:",id)
-    navigation.navigate("Publicacion",{itemId:id});
-  }
-
-  const renderItem = ({ item }) => {
-    return (
-      <PublicacionFlatList
-        item={item}
-        onPress={() => goToPublicacion(item.id)}
-      />
-    );
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.buttonContainer}>
         <Button title="Seleccionar intereses" onPress={goToBusqueda} color="teal" />
       </View>
-{/*       <FlatList
+      <ButtonFlatList
+        navigation={navigation}
         data={publicaciones}
-        keyExtractor={ (item) => item.id}
-        renderItem={ ({item, index}) => <PublicacionFlatList item = {item} />}
-        columnWrapperStyle={{justifyContent: 'space-between', marginBottom: 10}}        
-        //initialNumToRender={15}
-        numColumns={2}
-      /> */}
-      <FlatList
-        data={publicaciones}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        ruta={"Publicacion"}
+        publicacion={true}
       />
     </SafeAreaView>
   );
