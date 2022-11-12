@@ -37,21 +37,23 @@ const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
     return (
       <NativeBaseProvider>
         <Center flex={1} px="3" w="100%">
-              <Box safeArea p="2" py="8" w="90%" maxW="290" >
-          <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
-          <Button.Group isAttached colorScheme="blue" mx={{
-            base: "auto",
-            md: 0
-          }} size="sm">
-            <Button mt="2" colorScheme="indigo" oonPress={openShareDialogAsync} >
-            Compartir Foto
-            </Button>
+          
+            <VStack space={3} mt="5">
+              <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
+              <Button.Group isAttached colorScheme="blue" mx={{
+                  base: "auto",
+                  md: 0
+                }} size="sm">
+                <Button mt="2" colorScheme="indigo" oonPress={openShareDialogAsync} >
+                Compartir Foto
+                </Button>
 
-            <Button variant="outline" mt="2" colorScheme="indigo" onPress={openImagePickerAsync} >
-            Cambiar Foto
-            </Button>
-          </Button.Group>
-        </Box>
+                <Button variant="outline" mt="2" colorScheme="indigo" onPress={openImagePickerAsync} >
+                Cambiar Foto
+                </Button>
+              </Button.Group>
+            </VStack>
+          
         </Center>
       </NativeBaseProvider>
     );
