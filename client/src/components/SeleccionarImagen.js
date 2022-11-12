@@ -62,6 +62,7 @@ const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
   return (
     
       <NativeBaseProvider>
+        <Center flex={1} px="3" w="100%">
         <VStack space={3} mt="5">
           <Image source={{ uri: 'https://i.imgur.com/TkIrScD.png' }} style={styles.logo} />
 
@@ -69,6 +70,7 @@ const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
             Selecciona una Foto
             </Button>
         </VStack>
+        </Center>
       </NativeBaseProvider>
     
   );

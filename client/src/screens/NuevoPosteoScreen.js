@@ -42,7 +42,7 @@ export default function App() {
             selectedImage={selectedImage}
             setSelectedImage={setSelectedImage}
           />
-          <VStack space={3} mt="5">
+          <VStack space={3} >
           <Input 
             type="text"
             onChangeText={setTitulo}
@@ -56,7 +56,7 @@ export default function App() {
             placeholder="Categoria"
           />
           
-          <Button mt="2" colorScheme="indigo" onPress={publicar} >
+          <Button mb="10" mt="2" colorScheme="indigo" onPress={publicar} >
             Publicar
           </Button>
           </VStack>
