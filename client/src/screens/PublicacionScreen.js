@@ -7,9 +7,13 @@ export default function App({ route, navigation }) {
     const { itemId } = route.params;
     const [publicacion, setPublicacion] = useState(null);
 
-    useEffect(async () => {
+    const fetch = async () => {
         const response = await getPublicacion(itemId);
         setPublicacion(response)
+      }
+
+    useEffect(() => {
+        fetch()
     }, []);
 
     const agregarFavoritos = async () => {
