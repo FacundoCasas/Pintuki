@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import LogoPintuki from "../components/LogoPintuki.js";
 
-import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider, Image, useBreakpointValue } from "native-base";
+import { Box, Text, Heading, VStack, Input, Link, Button, HStack, Center, NativeBaseProvider} from "native-base";
 import { getUsuario } from '../services/UsuarioService.js';
 
 
