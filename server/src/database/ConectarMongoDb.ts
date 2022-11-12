@@ -1,13 +1,14 @@
 import { MongoClient } from 'mongodb';
-import { mongodb } from './Keys';
-
+import * as dotenv from 'dotenv'
+dotenv.config({path:'variables.env'})
 class ConectarMongoDb {
-    private client = new MongoClient(mongodb.URI);
-
+    
+    private client = new MongoClient(process.env.DB_URL);
+    
     async conectar(){
         try{
             await this.client.connect();
-            const db = this.client.db(mongodb.db);
+            const db = this.client.db("pintuki");
             return db;
         }catch(e){
             throw 'Error de conexion';

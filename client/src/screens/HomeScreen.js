@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PublicacionFlatList from "../components/PublicacionFlatList.js";
 import ButtonFlatList from '../components/ButtonFlatList.js';
 import { getPublicaciones } from "../services/PublicacionService.js";
+import { useIsFocused } from '@react-navigation/native';
 import {
   StyleSheet,
   Text,
@@ -15,12 +16,13 @@ import {
 export default function HomeScreen({ navigation }) {
 
   const [publicaciones, setPublicaciones] = useState([]);
+  const isFocused = useIsFocused();
 
   useEffect(async () => {
-    const response = await getPublicaciones();
+    const response =  isFocused && await getPublicaciones();
     //console.log("publicaciones useEffect:", response)
     setPublicaciones(response)
-}, []);
+  }, []);
 
   const goToBusqueda = () => {
     navigation.navigate("Busqueda");

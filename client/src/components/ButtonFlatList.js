@@ -1,3 +1,4 @@
+import { View } from "native-base";
 import React from "react";
 import { StyleSheet, SafeAreaView, FlatList } from "react-native";
 import PublicacionFlatList from "../components/PublicacionFlatList.js";
@@ -8,21 +9,21 @@ const ButtonFlatList = ({ navigation, data, ruta, publicacion }) => {
     }
 
     const renderItem = ({ item }) => {
-        if (publicacion) {
-            return (
-                <PublicacionFlatList
-                    item={item}
-                    onPress={() => goToPublicacion(item.id)}
-                />
-            );
-        } else {
-            return (
-                <PublicacionFlatList
-                    item={item}
-                    onPress={() => goToPublicacion(item.id)}
-                />
-            );
-        }
+        return (
+            <View>
+                {publicacion ?
+                    <PublicacionFlatList
+                        item={item}
+                        onPress={() => goToPublicacion(item.id)}
+                    />
+                    :
+                    <PublicacionFlatList
+                        item={item}
+                        onPress={() => goToPublicacion(item.id)}
+                    />
+                }
+            </View>
+        );
     };
 
     return (
