@@ -18,11 +18,11 @@ const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
       allowsEditing: true,
       aspect: [3, 4]
     });
-    if (pickerResult.cancelled === true) {
+    if (pickerResult.canceled === true) {
       return;
     }
 
-    setSelectedImage({ localUri: pickerResult.uri });
+    setSelectedImage({ localUri: pickerResult.assets[0].uri});
   };
   const openShareDialogAsync = async () => {
     if (!(await Sharing.isAvailableAsync())) {

@@ -4,7 +4,7 @@ import { VStack,  Input,  Button, HStack, Center, NativeBaseProvider, Image, use
 import { postPublicacion } from '../services/PublicacionService';
 import SeleccionarImagen from '../components/SeleccionarImagen'
 
-export default function App() {
+export default function App({ navigation }) {
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [titulo, setTitulo] = useState('');
@@ -22,6 +22,7 @@ export default function App() {
       etiquetas: categoria
     };
     await postPublicacion(publicacion)
+    navigation.navigate("Home")
   };
 
 /*
