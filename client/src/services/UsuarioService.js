@@ -3,7 +3,7 @@ import { API_USUARIOS } from "../utils/Util";
 
 const getUsuario = async (clave) => {
     const response = await axios.post(API_USUARIOS + "/login", {clave}).catch(error => console.log(error));
-    console.log(response)
+    //console.log("ServicioFront", response.data)
     return response.data
 }
 
