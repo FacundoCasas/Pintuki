@@ -2,6 +2,7 @@ import React from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import { NativeBaseProvider, Button, VStack, Center, Box } from 'native-base';
 
 const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
 
@@ -34,25 +35,42 @@ const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
 
   if (selectedImage !== null) {
     return (
-      <View style={styles.container}>
-        <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
-        <TouchableOpacity onPress={openShareDialogAsync} style={styles.button}>
-          <Text style={styles.buttonText}>Compartir Foto</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={openImagePickerAsync} style={styles.button}>
-          <Text style={styles.buttonText}>Cambiar Foto</Text>
-        </TouchableOpacity>
-      </View>
+      <NativeBaseProvider>
+        <Center flex={1} px="3" w="100%">
+          
+            <VStack space={3} mt="5">
+              <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
+              <Button.Group isAttached colorScheme="blue" mx={{
+                  base: "auto",
+                  md: 0
+                }} size="sm">
+                <Button mt="2" colorScheme="indigo" oonPress={openShareDialogAsync} >
+                Compartir Foto
+                </Button>
+
+                <Button variant="outline" mt="2" colorScheme="indigo" onPress={openImagePickerAsync} >
+                Cambiar Foto
+                </Button>
+              </Button.Group>
+            </VStack>
+          
+        </Center>
+      </NativeBaseProvider>
     );
   }
 
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: 'https://i.imgur.com/TkIrScD.png' }} style={styles.logo} />
-      <TouchableOpacity onPress={openImagePickerAsync} style={styles.button}>
-        <Text style={styles.buttonText}>Selecciona una Foto</Text>
-      </TouchableOpacity>
-    </View>
+    
+      <NativeBaseProvider>
+        <VStack space={3} mt="5">
+          <Image source={{ uri: 'https://i.imgur.com/TkIrScD.png' }} style={styles.logo} />
+
+            <Button colorScheme="indigo" onPress={openImagePickerAsync} >
+            Selecciona una Foto
+            </Button>
+        </VStack>
+      </NativeBaseProvider>
+    
   );
 
 }

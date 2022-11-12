@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, TextInput, SafeAreaView } from 'react-native';
-//import { Box, Text, Heading, VStack,  Input,  Button, HStack, Center, NativeBaseProvider, Image, useBreakpointValue} from "native-base";
+import { VStack,  Input,  Button, HStack, Center, NativeBaseProvider, Image, useBreakpointValue, Box} from "native-base";
 import { postPublicacion } from '../services/PublicacionService';
 import SeleccionarImagen from '../components/SeleccionarImagen'
 
@@ -35,9 +35,46 @@ export default function App() {
     <NativeBaseProvider>
 */
   return (
-    
+    <NativeBaseProvider>
+        <View style={styles.container}>
+        
+        <SafeAreaView>
+          <SeleccionarImagen
+            selectedImage={selectedImage}
+            setSelectedImage={setSelectedImage}
+          />
+          <VStack space={3} mt="5">
+          <Input 
+            type="text"
+            onChangeText={setTitulo}
+            value={titulo} 
+            placeholder="Titulo"
+          />
+            <Input 
+            type="text"
+            onChangeText={setCategoria}
+            value={categoria} 
+            placeholder="Categoria"
+          />
+          
+          <Button mt="2" colorScheme="indigo" onPress={publicar} >
+            Publicar
+          </Button>
+          </VStack>
+        </SafeAreaView>
 
-    <View style={styles.container}>
+        
+      </View>
+    </NativeBaseProvider>
+
+   
+  );
+}
+
+
+/*
+
+ <View style={styles.container}>
       <SafeAreaView>
         <SeleccionarImagen
           selectedImage={selectedImage}
@@ -60,8 +97,8 @@ export default function App() {
         </TouchableOpacity>
       </SafeAreaView>
     </View>
-  );
-}
+
+*/
 
 const styles = StyleSheet.create({
   container: {
