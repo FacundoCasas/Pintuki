@@ -21,6 +21,7 @@
     "expo-media-library": "~14.0.0",
     "expo-sharing": "~10.1.0",
     "expo-status-bar": "~1.2.0",
+    "firebase": "^9.14.0",
     "native-base": "^3.4.19",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -30,7 +31,8 @@
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-svg": "12.1.1",
-    "react-native-web": "0.17.1"
+    "react-native-web": "0.17.1",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

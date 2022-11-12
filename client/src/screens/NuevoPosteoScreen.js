@@ -14,8 +14,9 @@ export default function App() {
   const publicar = async () => {
     //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
     let publicacion = {
-      id: 9,
-      url: selectedImage.localUri,
+      id: 10,
+      //url: selectedImage.localUri,
+      url: selectedImage,
       titulo: titulo,
       autor: "admin",
       etiquetas: categoria

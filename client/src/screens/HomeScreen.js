@@ -19,7 +19,8 @@ export default function HomeScreen({ navigation }) {
   const isFocused = useIsFocused();
 
   useEffect(async () => {
-    const response =  isFocused && await getPublicaciones();
+    //const response =  isFocused && await getPublicaciones();
+    const response =  await getPublicaciones();
     //console.log("publicaciones useEffect:", response)
     setPublicaciones(response)
   }, []);
@@ -33,12 +34,14 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.buttonContainer}>
         <Button title="Seleccionar intereses" onPress={goToBusqueda} color="teal" />
       </View>
-      <ButtonFlatList
-        navigation={navigation}
-        data={publicaciones}
-        ruta={"Publicacion"}
-        publicacion={true}
-      />
+ 
+        <ButtonFlatList
+          navigation={navigation}
+          data={publicaciones}
+          ruta={"Publicacion"}
+          publicacion={true}
+        />
+      
     </SafeAreaView>
   );
 }
