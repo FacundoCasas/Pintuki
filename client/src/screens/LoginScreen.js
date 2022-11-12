@@ -1,13 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import LogoPintuki from "../components/LogoPintuki.js";
 
 import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider, Image } from "native-base";
 
+import { addUsuario } from '../services/UsuarioService.js';
 
 
     export default function LogInScreen ({navigation}){
-        return (
+        
+      const [usuario, setUsuario] = useState('');
+      const [contrasenia, setContrasenia] = useState('');
+      
+      const registrarUsuario = async () => {
+        //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
+        let usuarioCreado = {
+          id: 3,
+          usuario: usuario,
+          contrasenia: contrasenia,
+          fotoPerfil: "https://i.ibb.co/KjFFfmq/diego-pintuki-01.jpg",
+        };
+        await addUsuario(usuarioCreado)
+      };
+      
+      
+      
+      return (
           <NativeBaseProvider>
             <Center flex={1} px="3" w="100%">
               <Box safeArea p="2" py="8" w="90%" maxW="290" >
@@ -23,17 +41,29 @@ import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, C
         <VStack space={3} mt="5">
           <FormControl>
             <FormControl.Label>Nombre de Usuario</FormControl.Label>
-            <Input />
+            <Input type="text"
+                  onChangeText={setUsuario}
+                  value={usuario} 
+                  placeholder="Nombre de Usuario"
+                />
           </FormControl>
           <FormControl>
             <FormControl.Label>Constraseña</FormControl.Label>
-            <Input type="password" />
+            <Input type="password" 
+                  onChangeText={setContrasenia}
+                  value={contrasenia}
+                  placeholder="Constraseña"
+                />
           </FormControl>
-          <FormControl>
+          {/* <FormControl>
             <FormControl.Label>Ingresa tu constraseña nuevamente</FormControl.Label>
-            <Input type="password" />
-          </FormControl>
-          <Button mt="2" colorScheme="indigo">
+            <Input type="password" 
+                  onChangeText={setContrasenia}
+                  value={contrasenia}
+                  placeholder="Constraseña"
+                />
+          </FormControl> */}
+          <Button mt="2" colorScheme="indigo" onPress={registrarUsuario}>
             Registrarse
           </Button>
          
