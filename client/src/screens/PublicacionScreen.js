@@ -33,36 +33,19 @@ export default function App({ route, navigation }) {
         navigation.goBack();
     };
     return (
-        /*
-        <View style={styles.container}>
-        { publicacion && 
-            <SafeAreaView>
-                <Image source={{ uri: publicacion.url }} style={styles.thumbnail} /> 
-                <Text>{publicacion.titulo}</Text>
-            </SafeAreaView> 
-        }
-        </View>
-        */
+        publicacion &&
         <Box style={styles.container}>
-            {/* Colocar bien el boton no me sale jejox */}
-            {publicacion &&
-                <Box style={styles.container}>
-                    <AspectRatio w="100%" ratio={14 / 16}>
-                        <Image /*borderRadius={10}  borderWidth={3} borderColor={"black"}  m="5"*/ source={{
-                            uri: publicacion.url
-                        }} alt="image" />
-                    </AspectRatio>
-                    <HStack m="5">
-                        <VStack >
-                            <Heading>{publicacion.autor}</Heading>
-                            <Text>{publicacion.titulo}</Text>
-                        </VStack>
-                        <Box m="5" px="30%" />
-                        <Button  onPress={botonFavoritos} leftIcon={<FavouriteIcon />} />
-                        
-                    </HStack>
-                </Box>
-            }
+            <AspectRatio w="100%" ratio={14 / 16}>
+                <Image source={{ uri: publicacion.url }} alt="image" />
+            </AspectRatio>
+            <HStack m="5">
+                <VStack >
+                    <Heading>{publicacion.autor}</Heading>
+                    <Text>{publicacion.titulo}</Text>
+                </VStack>
+                <Box m="5" px="30%" />
+                <Button  onPress={botonFavoritos} leftIcon={<FavouriteIcon />} />
+            </HStack>
         </Box>
     );
 
