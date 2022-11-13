@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, Image, View, SafeAreaView } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { VStack, Input, Button, HStack, Center, Text, Image, useBreakpointValue, Box, AspectRatio, Icon } from "native-base";
 import { getPublicacion } from '../services/PublicacionService';
+import { agregarFavoritos } from '../services/UsuarioService'
+import { Ionicons } from "@expo/vector-icons";
 
 export default function App({ route, navigation }) {
 
@@ -10,25 +13,53 @@ export default function App({ route, navigation }) {
     const fetch = async () => {
         const response = await getPublicacion(itemId);
         setPublicacion(response)
-      }
+    }
 
     useEffect(() => {
         fetch()
     }, []);
 
-    const agregarFavoritos = async () => {
+    const botonFavoritos = async () => {
         //agregarFavoritos del usuario logeado
+        console.log("Agregando a fav")
+        const data = {
+            username:"admin",
+            publicacionId: publicacion.id
+        }
+        await agregarFavoritos(data);
     };
-        return (
-            <View style={styles.container}>
-            { publicacion && 
-                <SafeAreaView>
-                    <Image source={{ uri: publicacion.url }} style={styles.thumbnail} /> 
+
+    const goBack = () => {
+        navigation.goBack();
+    };
+    return (
+        /*
+        <View style={styles.container}>
+        { publicacion && 
+            <SafeAreaView>
+                <Image source={{ uri: publicacion.url }} style={styles.thumbnail} /> 
+                <Text>{publicacion.titulo}</Text>
+            </SafeAreaView> 
+        }
+        </View>
+        */
+        <Box style={styles.container}>
+            {/* Colocar bien el boton no me sale jejox */}
+            <Button onPress={goBack} leftIcon={<Icon as={Ionicons} name="chevron-back-outline" size="sm" />} />
+            {publicacion &&
+                <Box style={styles.container}>
+                    <AspectRatio w="100%" ratio={14 / 16}>
+                        <Image source={{
+                            uri: publicacion.url
+                        }} alt="image" />
+                    </AspectRatio>
                     <Text>{publicacion.titulo}</Text>
-                </SafeAreaView> 
+                    <Text>{publicacion.autor}</Text>
+                    <Button onPress={botonFavoritos} leftIcon={<Icon as={Ionicons} name="bookmark-outline" size="sm" />} />
+                </Box>
             }
-            </View>
-        );
+        </Box>
+    );
 
 }
 

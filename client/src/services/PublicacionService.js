@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { API_PUBLICACIONES } from "../utils/Util";
-//import { uploadImage } from './FireBaseService';
 import { uploadFile } from '../firebase/config';
 
 const getPublicaciones = async () => {
@@ -31,7 +30,6 @@ const postPublicacion = async (publicacion) => {
         //mostrar alerta de que fallo al subir
         //ademas no deberia seguir con el otro response
     }
-    //return await axios.post(API_PUBLICACIONES, { publicacion }).catch(error => console.log(error));
 }
 
 export {

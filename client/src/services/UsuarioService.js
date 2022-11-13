@@ -11,7 +11,15 @@ const addUsuario = async (usuario) => {
     return await axios.post(API_USUARIOS,{usuario}).catch(error => console.log(error));
 }
 
+const agregarFavoritos = async (data) => {
+    try {
+        return await axios.post(API_USUARIOS_FAVORITOS, { data }).catch(error => console.log(error));
+    } catch (error) {
+        console.log(error)
+    }
+}
 export {
     getUsuario,
-    addUsuario
+    addUsuario,
+    agregarFavoritos
 }
