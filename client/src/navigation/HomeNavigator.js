@@ -25,14 +25,16 @@ export default function HomeNavigator() {
         name="Busqueda"
         component={BusquedaScreen}
         options={{
-          headerShown: false,
+          headerShown: true,
+          title: "",
       }}
       />
       <Stack.Screen
         name="Publicacion"
         component={PublicacionScreen}
         options={{
-        headerShown: false,
+          title: "",
+          headerTransparent: true,
         }}
       />
     </Stack.Navigator>

@@ -15,7 +15,6 @@ import { addUsuario } from '../services/UsuarioService.js';
       const registrarUsuario = async () => {
         //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
         let usuarioCreado = {
-          id: 3,
           usuario: usuario,
           contrasenia: contrasenia,
           fotoPerfil: "https://i.ibb.co/KjFFfmq/diego-pintuki-01.jpg",

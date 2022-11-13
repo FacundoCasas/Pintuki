@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { VStack, Input, Button, HStack, Center, Text, Image, useBreakpointValue, Box, AspectRatio, Icon } from "native-base";
+import { VStack, Input, Button, HStack, Center, Text, Image, useBreakpointValue, Box, AspectRatio, Icon, Heading, FavouriteIcon } from "native-base";
 import { getPublicacion } from '../services/PublicacionService';
 import { agregarFavoritos } from '../services/UsuarioService'
 import { Ionicons } from "@expo/vector-icons";
@@ -45,17 +45,22 @@ export default function App({ route, navigation }) {
         */
         <Box style={styles.container}>
             {/* Colocar bien el boton no me sale jejox */}
-            <Button onPress={goBack} leftIcon={<Icon as={Ionicons} name="chevron-back-outline" size="sm" />} />
             {publicacion &&
                 <Box style={styles.container}>
                     <AspectRatio w="100%" ratio={14 / 16}>
-                        <Image source={{
+                        <Image /*borderRadius={10}  borderWidth={3} borderColor={"black"}  m="5"*/ source={{
                             uri: publicacion.url
                         }} alt="image" />
                     </AspectRatio>
-                    <Text>{publicacion.titulo}</Text>
-                    <Text>{publicacion.autor}</Text>
-                    <Button onPress={botonFavoritos} leftIcon={<Icon as={Ionicons} name="bookmark-outline" size="sm" />} />
+                    <HStack m="5">
+                        <VStack >
+                            <Heading>{publicacion.autor}</Heading>
+                            <Text>{publicacion.titulo}</Text>
+                        </VStack>
+                        <Box m="5" px="30%" />
+                        <Button  onPress={botonFavoritos} leftIcon={<FavouriteIcon />} />
+                        
+                    </HStack>
                 </Box>
             }
         </Box>
