@@ -1,12 +1,15 @@
 import React, { createContext, useContext, useState } from "react";
-import { getUsuario } from "../services/UsuarioService.js";
+import { getUsuario, addUsuario } from "../services/UsuarioService.js";
 
 const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
-    username: "",
-    password: "",
+    usuario: "",
+    contrasenia: "",
+    fotoPerfil: "",
+    publicacionesFavoritas: [],
+    publicacionesCreadas: []
   });
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Comenzaría en false y cambiaría al hacer el login a true
 
@@ -18,11 +21,32 @@ export const UserProvider = ({ children }) => {
     };
     const loguedUser = await getUsuario(clave);
     setUser(loguedUser);
-    isAuthenticated(true);
+    setIsAuthenticated(true);
   };
 
+  const logOut = () => {
+    setUser(
+      usuario= "",
+      contraseni= "",
+      fotoPerfil= "",
+      publicacionesFavoritas= [],
+      publicacionesCreadas= []
+      );
+    setIsAuthenticated(false);
+  }
+
+  //SIGN IN EN PROCESO
+  const signInUsuario = async (usuario, contrasenia) => {
+    let usuarioCreado = {
+      usuario: usuario,
+      contrasenia: contrasenia,
+      fotoPerfil: "https://i.ibb.co/KjFFfmq/diego-pintuki-01.jpg",
+    };
+    usuarioCreado = await addUsuario(usuarioCreado)
+  }
+
   return (
-    <UserContext.Provider value={{ user, isAuthenticated, loginUsuario }}>
+    <UserContext.Provider value={{ user, isAuthenticated, loginUsuario, logOut }}>
       {children}
     </UserContext.Provider>
   );

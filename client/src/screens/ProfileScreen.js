@@ -5,20 +5,34 @@ import {
   Button,
   Center,
   Image,
+  HStack,
 } from "native-base";
 import LogInScreen from "./LoginScreen.js";
 import { useAuth } from "../context/userContext.js";
 
 export default function ProfileScreen({ navigation }) {
   // const [userLogueado, setUserLogueado] = useState(""); ---> Este userLogueado tiene que venir del contexto, para eso traigo el user del contexto usando el hook de useAuth()
-  const { user } = useAuth();
+  const { user, logOut, isAuthenticated } = useAuth();
 
-  if (user.name !== "") {
+  const logOutOnClick = () => {
+    try {
+      logOut();
+      //console.log("user", user);
+      console.log("isAuthenticated", isAuthenticated);
+
+      navigation.navigate("HomeStack", { screen: "Home" });
+    } catch (error) {
+      //Acá va todo lo que quieren que haga si el login falla (mostrar un toast por ejemplo)
+    }
+  };
+
+
+  if (isAuthenticated) {
     console.log("ProfileScreen: user en contexto: ", user);
   }
   return (
     <>
-      {user.name !== "" ? (
+      {isAuthenticated ? (
         <Center flex={1} px="3" w="100%">
           <Box safeArea p="2" py="8" w="90%" maxW="290">
             <Center>
@@ -29,11 +43,14 @@ export default function ProfileScreen({ navigation }) {
                 borderColor={"black"}
                 m="3"
                 source={{
-                  uri: userLogueado.fotoPerfil,
+                  uri: user.fotoPerfil,
                 }}
                 alt="LogoPintuki"
               />
-              <Text>Estas Logueado {userLogueado.usuario}</Text>
+              <HStack>
+                <Text>¡Hola {user.usuario}!</Text>
+                <Button onPress={logOutOnClick}>Cerrar Sesion</Button>
+              </HStack>
             </Center>
             <Button.Group
               isAttached

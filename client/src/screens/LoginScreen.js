@@ -22,7 +22,7 @@ export default function LogInScreen({ navigation }) {
   const onClick = () => {
     try {
       loginUsuario(usuario, contrasenia);
-      console.log("user", user);
+      //console.log("user", user);
       console.log("isAuthenticated", isAuthenticated);
 
       navigation.navigate("HomeStack", { screen: "Home" });
