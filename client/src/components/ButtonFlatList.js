@@ -31,6 +31,7 @@ const ButtonFlatList = ({ navigation, data, ruta, publicacion }) => {
                 data={data}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
+                numColumns={2}
             />
         </SafeAreaView>
     );

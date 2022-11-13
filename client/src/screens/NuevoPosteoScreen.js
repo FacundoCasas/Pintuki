@@ -23,8 +23,15 @@ export default function App({ navigation }) {
     };
     await postPublicacion(publicacion)
     navigation.navigate("Home")
+    limpiarStates()
   };
 
+  const limpiarStates = () =>{
+    setSelectedImage(null)
+    setTitulo('')
+    //cambiar con el componente nuevo
+    setCategoria('')
+  }
 /*
 <NativeBaseProvider>
       <Center flex={1} px="3" w="100%">
