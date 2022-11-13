@@ -44,7 +44,7 @@ const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
                   base: "auto",
                   md: 0
                 }} size="sm">
-                <Button mt="2" colorScheme="indigo" oonPress={openShareDialogAsync} >
+                <Button mt="2" colorScheme="indigo" onPress={openShareDialogAsync} >
                 Compartir Foto
                 </Button>
 
