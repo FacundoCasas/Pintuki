@@ -4,6 +4,8 @@ import { VStack,  Input,  Button, HStack, Center, NativeBaseProvider, Image, use
 import { postPublicacion } from '../services/PublicacionService';
 import SeleccionarImagen from '../components/SeleccionarImagen'
 
+import { useAuth } from '../context/userContext';
+
 export default function App({ navigation }) {
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -11,14 +13,16 @@ export default function App({ navigation }) {
   //Tienen que consumirse de la base y agregar el componente de categorias
   const [categoria, setCategoria] = useState('');
 
+  const { user } = useAuth();
+
   const publicar = async () => {
     //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
     let publicacion = {
-      id: 10,
+      //id: 10,
       //url: selectedImage.localUri,
       url: selectedImage,
       titulo: titulo,
-      autor: "admin",
+      autor: user.usuario,
       etiquetas: categoria
     };
     await postPublicacion(publicacion)

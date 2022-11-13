@@ -6,6 +6,8 @@ import {
   Center,
   Image,
   HStack,
+  Fab,
+  ArrowBackIcon,
 } from "native-base";
 import LogInScreen from "./LoginScreen.js";
 import { useAuth } from "../context/userContext.js";
@@ -33,7 +35,16 @@ export default function ProfileScreen({ navigation }) {
   return (
     <>
       {isAuthenticated ? (
+        <>
+        <Box>
+        <Fab  placement="top-right" mt={10}
+              icon={<ArrowBackIcon/>}
+              label={<Text>Cerrar Sesion</Text>}
+              onPress={logOutOnClick}
+        />
+        </Box>
         <Center flex={1} px="3" w="100%">
+          
           <Box safeArea p="2" py="8" w="90%" maxW="290">
             <Center>
               <Image
@@ -47,10 +58,7 @@ export default function ProfileScreen({ navigation }) {
                 }}
                 alt="LogoPintuki"
               />
-              <HStack>
-                <Text>¡Hola {user.usuario}!</Text>
-                <Button onPress={logOutOnClick}>Cerrar Sesion</Button>
-              </HStack>
+            <Text>¡Hola {user.usuario}!</Text>
             </Center>
             <Button.Group
               isAttached
@@ -80,6 +88,7 @@ export default function ProfileScreen({ navigation }) {
             </Button.Group>
           </Box>
         </Center>
+        </>
       ) : (
         <LogInScreen
           navigation={navigation}

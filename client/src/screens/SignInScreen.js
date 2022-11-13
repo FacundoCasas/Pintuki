@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 
 import LogoPintuki from "../components/LogoPintuki.js";
 
@@ -6,11 +6,15 @@ import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, C
 
 import { addUsuario } from '../services/UsuarioService.js';
 
+import { useAuth } from '../context/userContext.js';
+
 
     export default function LogInScreen ({navigation}){
         
       const [usuario, setUsuario] = useState('');
       const [contrasenia, setContrasenia] = useState('');
+
+      const {user, setUser} = useAuth
       
       const registrarUsuario = async () => {
         //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
