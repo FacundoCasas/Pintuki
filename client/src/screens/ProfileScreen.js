@@ -1,78 +1,99 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Text,
+  Button,
+  Center,
+  Image,
+  HStack,
+  Fab,
+  ArrowBackIcon,
+} from "native-base";
+import LogInScreen from "./LoginScreen.js";
+import { useAuth } from "../context/userContext.js";
 
-import LogoPintuki from "../components/LogoPintuki.js";
+export default function ProfileScreen({ navigation }) {
+  // const [userLogueado, setUserLogueado] = useState(""); ---> Este userLogueado tiene que venir del contexto, para eso traigo el user del contexto usando el hook de useAuth()
+  const { user, logOut, isAuthenticated } = useAuth();
 
-import { Box, Text, Heading, VStack, Input, Link, Button, HStack, Center, NativeBaseProvider} from "native-base";
-import { getUsuario } from '../services/UsuarioService.js';
+  const logOutOnClick = () => {
+    try {
+      logOut();
+      //console.log("user", user);
+      console.log("isAuthenticated", isAuthenticated);
 
-
-
-
-
-    export default function ProfileScreen ({navigation}){
-      
-      const [usuario, setUsuario] = useState('');
-      const [contrasenia, setContrasenia] = useState('');
-      
-      const loginUsuario = async () => {
-        //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
-        let clave = {
-          username: usuario,
-          password: contrasenia
-        };
-        await getUsuario(clave)
-      };
+      navigation.navigate("HomeStack", { screen: "Home" });
+    } catch (error) {
+      //Acá va todo lo que quieren que haga si el login falla (mostrar un toast por ejemplo)
+    }
+  };
 
 
-      return (
-          <NativeBaseProvider>
-            <Center flex={1} px="3" w="100%">
-              <Box safeArea p="2" py="8" w="90%" maxW="290" >
-
-              <Center>
-                <LogoPintuki/>
-                <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{ color: "warmGray.50" }}>
-                  Iniciar Sesión
-                </Heading>
-              </Center>
-
-              <VStack space={3} mt="5">
-                
-                <Text>Nombre de Usuario</Text>
-                <Input 
-                  type="text"
-                  onChangeText={setUsuario}
-                  value={usuario} 
-                  placeholder="Nombre de Usuario"
-                />
-                <Text>Constraseña</Text>
-                <Input 
-                  type="password" 
-                  onChangeText={setContrasenia}
-                  value={contrasenia}
-                  placeholder="Constraseña"
-                />
-                
-                <Button mt="2" colorScheme="indigo" onPress={loginUsuario}>
-                  Iniciar Sesión
-                </Button>
-                <HStack mt="6" justifyContent="center">
-                  <Text fontSize="sm" color="coolGray.600" _dark={{
-                  color: "warmGray.200"
-                }}>
-                    ¿Todavia no tenes cuenta?.{" "}
-                  </Text>
-                  <Link _text={{
-                  color: "indigo.500",
-                  fontWeight: "medium",
-                  fontSize: "sm"
-                }} onPress={() => navigation.navigate("LogIn")}>
-                    Registrate!
-                  </Link>
-                </HStack>
-              </VStack>
-              </Box>
+  if (isAuthenticated) {
+    console.log("ProfileScreen: user en contexto: ", user);
+  }
+  return (
+    <>
+      {isAuthenticated ? (
+        <>
+        <Box>
+        <Fab  placement="top-right" mt={10}
+              icon={<ArrowBackIcon/>}
+              label={<Text>Cerrar Sesion</Text>}
+              onPress={logOutOnClick}
+        />
+        </Box>
+        <Center flex={1} px="3" w="100%">
+          
+          <Box safeArea p="2" py="8" w="90%" maxW="290">
+            <Center>
+              <Image
+                size={90}
+                borderRadius={100}
+                borderWidth={2}
+                borderColor={"black"}
+                m="3"
+                source={{
+                  uri: user.fotoPerfil,
+                }}
+                alt="LogoPintuki"
+              />
+            <Text>¡Hola {user.usuario}!</Text>
             </Center>
-          </NativeBaseProvider>
-        );
-    };
+            <Button.Group
+              isAttached
+              colorScheme="blue"
+              mx={{
+                base: "auto",
+                md: 0,
+              }}
+              size="sm"
+            >
+              <Button
+                mt="2"
+                colorScheme="indigo"
+                onPress={() => console.log("Pintukis Favoritos")}
+              >
+                Pintukis Favoritos
+              </Button>
+
+              <Button
+                variant="outline"
+                mt="2"
+                colorScheme="indigo"
+                onPress={() => console.log("Pintukis Creados")}
+              >
+                Pintukis Creados
+              </Button>
+            </Button.Group>
+          </Box>
+        </Center>
+        </>
+      ) : (
+        <LogInScreen
+          navigation={navigation}
+       />
+      )}
+    </>
+  );
+}

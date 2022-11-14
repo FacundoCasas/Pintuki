@@ -18,11 +18,11 @@ const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
       allowsEditing: true,
       aspect: [3, 4]
     });
-    if (pickerResult.cancelled === true) {
+    if (pickerResult.canceled === true) {
       return;
     }
 
-    setSelectedImage({ localUri: pickerResult.uri });
+    setSelectedImage({ localUri: pickerResult.assets[0].uri});
   };
   const openShareDialogAsync = async () => {
     if (!(await Sharing.isAvailableAsync())) {
@@ -44,7 +44,7 @@ const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
                   base: "auto",
                   md: 0
                 }} size="sm">
-                <Button mt="2" colorScheme="indigo" oonPress={openShareDialogAsync} >
+                <Button mt="2" colorScheme="indigo" onPress={openShareDialogAsync} >
                 Compartir Foto
                 </Button>
 
@@ -62,6 +62,7 @@ const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
   return (
     
       <NativeBaseProvider>
+        <Center flex={1} px="3" w="100%">
         <VStack space={3} mt="5">
           <Image source={{ uri: 'https://i.imgur.com/TkIrScD.png' }} style={styles.logo} />
 
@@ -69,6 +70,7 @@ const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
             Selecciona una Foto
             </Button>
         </VStack>
+        </Center>
       </NativeBaseProvider>
     
   );

@@ -1,75 +1,95 @@
-import React, {useState} from 'react';
-
+import React, { useState } from "react";
 import LogoPintuki from "../components/LogoPintuki.js";
+import {
+  Box,
+  Text,
+  Heading,
+  VStack,
+  Input,
+  Link,
+  Button,
+  HStack,
+  Center,
+  NativeBaseProvider,
+} from "native-base";
+import { useAuth } from "../context/userContext";
 
-import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider, Image } from "native-base";
+export default function LogInScreen({ navigation }) {
+  const [usuario, setUsuario] = useState("");
+  const [contrasenia, setContrasenia] = useState("");
+  const { loginUsuario, user, isAuthenticated } = useAuth();
 
-import { addUsuario } from '../services/UsuarioService.js';
+  const onClick = () => {
+    try {
+      loginUsuario(usuario, contrasenia);
+      //console.log("user", user);
+      console.log("isAuthenticated", isAuthenticated);
 
+      navigation.navigate("HomeStack", { screen: "Home" });
+    } catch (error) {
+      //Acá va todo lo que quieren que haga si el login falla (mostrar un toast por ejemplo)
+    }
+  };
 
-    export default function LogInScreen ({navigation}){
-        
-      const [usuario, setUsuario] = useState('');
-      const [contrasenia, setContrasenia] = useState('');
-      
-      const registrarUsuario = async () => {
-        //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
-        let usuarioCreado = {
-          id: 3,
-          usuario: usuario,
-          contrasenia: contrasenia,
-          fotoPerfil: "https://i.ibb.co/KjFFfmq/diego-pintuki-01.jpg",
-        };
-        await addUsuario(usuarioCreado)
-      };
-      
-      
-      
-      return (
-          <NativeBaseProvider>
-            <Center flex={1} px="3" w="100%">
-              <Box safeArea p="2" py="8" w="90%" maxW="290" >
+  return (
+    <NativeBaseProvider>
+      <Center flex={1} px="3" w="100%">
+        <Box safeArea p="2" py="8" w="90%" maxW="290">
+          <Center>
+            <LogoPintuki />
+            <Heading
+              size="lg"
+              fontWeight="600"
+              color="coolGray.800"
+              _dark={{ color: "warmGray.50" }}
+            >
+              Iniciar Sesión
+            </Heading>
+          </Center>
 
-            <Center>
-                <LogoPintuki/>
+          <VStack space={3} mt="5">
+            <Text>Nombre de Usuario</Text>
+            <Input
+              type="text"
+              onChangeText={setUsuario}
+              value={usuario}
+              placeholder="Nombre de Usuario"
+            />
+            <Text>Constraseña</Text>
+            <Input
+              type="password"
+              onChangeText={setContrasenia}
+              value={contrasenia}
+              placeholder="Constraseña"
+            />
 
-                <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{ color: "warmGray.50" }}>
-                Registrarte
-                </Heading>
-            </Center>
-
-        <VStack space={3} mt="5">
-          <FormControl>
-            <FormControl.Label>Nombre de Usuario</FormControl.Label>
-            <Input type="text"
-                  onChangeText={setUsuario}
-                  value={usuario} 
-                  placeholder="Nombre de Usuario"
-                />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Constraseña</FormControl.Label>
-            <Input type="password" 
-                  onChangeText={setContrasenia}
-                  value={contrasenia}
-                  placeholder="Constraseña"
-                />
-          </FormControl>
-          {/* <FormControl>
-            <FormControl.Label>Ingresa tu constraseña nuevamente</FormControl.Label>
-            <Input type="password" 
-                  onChangeText={setContrasenia}
-                  value={contrasenia}
-                  placeholder="Constraseña"
-                />
-          </FormControl> */}
-          <Button mt="2" colorScheme="indigo" onPress={registrarUsuario}>
-            Registrarse
-          </Button>
-         
-        </VStack>
-      </Box>
-    </Center>
-          </NativeBaseProvider>
-        );
-    };
+            <Button mt="2" colorScheme="indigo" onPress={onClick}>
+              Iniciar Sesión
+            </Button>
+            <HStack mt="6" justifyContent="center">
+              <Text
+                fontSize="sm"
+                color="coolGray.600"
+                _dark={{
+                  color: "warmGray.200",
+                }}
+              >
+                ¿Todavia no tenes cuenta?.{" "}
+              </Text>
+              <Link
+                _text={{
+                  color: "indigo.500",
+                  fontWeight: "medium",
+                  fontSize: "sm",
+                }}
+                onPress={() => navigation.navigate("SignIn")}
+              >
+                Registrate!
+              </Link>
+            </HStack>
+          </VStack>
+        </Box>
+      </Center>
+    </NativeBaseProvider>
+  );
+}

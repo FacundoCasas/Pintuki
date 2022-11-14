@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import PublicacionFlatList from "../components/PublicacionFlatList.js";
 import ButtonFlatList from '../components/ButtonFlatList.js';
 import { getPublicaciones } from "../services/PublicacionService.js";
-import { useIsFocused } from '@react-navigation/native';
+//import { useIsFocused } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 import {
   StyleSheet,
   Text,
@@ -16,29 +17,37 @@ import {
 export default function HomeScreen({ navigation }) {
 
   const [publicaciones, setPublicaciones] = useState([]);
-  const isFocused = useIsFocused();
-
-  useEffect(async () => {
-    const response =  isFocused && await getPublicaciones();
-    //console.log("publicaciones useEffect:", response)
-    setPublicaciones(response)
-  }, []);
+  //const isFocused = useIsFocused();
 
   const goToBusqueda = () => {
     navigation.navigate("Busqueda");
   };
+
+  const fetch = async () => {
+    const response = await getPublicaciones();
+    setPublicaciones(response)
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      fetch();
+    }, [])
+  );
+
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.buttonContainer}>
         <Button title="Seleccionar intereses" onPress={goToBusqueda} color="teal" />
       </View>
+
       <ButtonFlatList
         navigation={navigation}
         data={publicaciones}
         ruta={"Publicacion"}
         publicacion={true}
       />
+
     </SafeAreaView>
   );
 }

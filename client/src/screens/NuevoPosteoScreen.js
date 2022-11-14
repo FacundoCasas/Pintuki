@@ -4,25 +4,38 @@ import { VStack,  Input,  Button, HStack, Center, NativeBaseProvider, Image, use
 import { postPublicacion } from '../services/PublicacionService';
 import SeleccionarImagen from '../components/SeleccionarImagen'
 
-export default function App() {
+import { useAuth } from '../context/userContext';
+
+export default function App({ navigation }) {
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [titulo, setTitulo] = useState('');
   //Tienen que consumirse de la base y agregar el componente de categorias
   const [categoria, setCategoria] = useState('');
 
+  const { user } = useAuth();
+
   const publicar = async () => {
     //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
     let publicacion = {
-      id: 9,
-      url: selectedImage.localUri,
+      //id: 10,
+      //url: selectedImage.localUri,
+      url: selectedImage,
       titulo: titulo,
-      autor: "admin",
+      autor: user.usuario,
       etiquetas: categoria
     };
     await postPublicacion(publicacion)
+    navigation.navigate("Home")
+    limpiarStates()
   };
 
+  const limpiarStates = () =>{
+    setSelectedImage(null)
+    setTitulo('')
+    //cambiar con el componente nuevo
+    setCategoria('')
+  }
 /*
 <NativeBaseProvider>
       <Center flex={1} px="3" w="100%">
@@ -42,7 +55,7 @@ export default function App() {
             selectedImage={selectedImage}
             setSelectedImage={setSelectedImage}
           />
-          <VStack space={3} mt="5">
+          <VStack space={3} >
           <Input 
             type="text"
             onChangeText={setTitulo}
@@ -56,7 +69,7 @@ export default function App() {
             placeholder="Categoria"
           />
           
-          <Button mt="2" colorScheme="indigo" onPress={publicar} >
+          <Button mb="10" mt="2" colorScheme="indigo" onPress={publicar} >
             Publicar
           </Button>
           </VStack>

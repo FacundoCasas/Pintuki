@@ -1,30 +1,53 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, Image, View, SafeAreaView } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { VStack, Input, Button, HStack, Center, Text, Image, useBreakpointValue, Box, AspectRatio, Icon, Heading, FavouriteIcon } from "native-base";
 import { getPublicacion } from '../services/PublicacionService';
+import { agregarFavoritos } from '../services/UsuarioService'
+import { Ionicons } from "@expo/vector-icons";
 
 export default function App({ route, navigation }) {
 
     const { itemId } = route.params;
     const [publicacion, setPublicacion] = useState(null);
 
-    useEffect(async () => {
+    const fetch = async () => {
         const response = await getPublicacion(itemId);
         setPublicacion(response)
+    }
+
+    useEffect(() => {
+        fetch()
     }, []);
 
-    const agregarFavoritos = async () => {
+    const botonFavoritos = async () => {
         //agregarFavoritos del usuario logeado
+        console.log("Agregando a fav")
+        const data = {
+            username:"admin",
+            publicacionId: publicacion.id
+        }
+        await agregarFavoritos(data);
     };
-        return (
-            <View style={styles.container}>
-            { publicacion && 
-                <SafeAreaView>
-                    <Image source={{ uri: publicacion.url }} style={styles.thumbnail} /> 
+
+    const goBack = () => {
+        navigation.goBack();
+    };
+    return (
+        publicacion &&
+        <Box style={styles.container}>
+            <AspectRatio w="100%" ratio={14 / 16}>
+                <Image source={{ uri: publicacion.url }} alt="image" />
+            </AspectRatio>
+            <HStack m="5">
+                <VStack >
+                    <Heading>{publicacion.autor}</Heading>
                     <Text>{publicacion.titulo}</Text>
-                </SafeAreaView> 
-            }
-            </View>
-        );
+                </VStack>
+                <Box m="5" px="30%" />
+                <Button  onPress={botonFavoritos} leftIcon={<FavouriteIcon />} />
+            </HStack>
+        </Box>
+    );
 
 }
 

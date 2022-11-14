@@ -6,9 +6,14 @@ import ProfileNavigator from "./navigation/ProfileNavigator";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import NuevoPosteoScreen from "./screens/NuevoPosteoScreen";
 
+import { useAuth } from "./context/userContext";
+
 const Tab = createBottomTabNavigator();
 
 export default function AppNavigator() {
+
+  const { user, isAuthenticated } = useAuth();
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -30,7 +35,7 @@ export default function AppNavigator() {
       <Tab.Screen
         name="NuevoPosteo"
         //component={user ? NuevoPosteoScreen : Login}
-        component={NuevoPosteoScreen}
+        component={ isAuthenticated ? NuevoPosteoScreen: ProfileNavigator}
         options={{
           headerShown: false,
           tabBarLabel: "NuevoPosteo",
