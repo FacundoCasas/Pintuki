@@ -10,8 +10,9 @@ CategoriaRouter.get('', async (req, res) => {
     res.json( await categoriaService.findAll())
 })
   
-CategoriaRouter.post('', async (req, res) => {   
-    await categoriaService.add(req);
+CategoriaRouter.post('', async (req, res) => {  
+    console.log(req.body.categoria)
+    await categoriaService.add(req.body.categoria);
     res.json( {"resultado": "ok"} )
 })
 

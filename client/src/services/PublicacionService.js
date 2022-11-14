@@ -11,6 +11,11 @@ const getPublicacion = async (id) => {
     return response.data.publicacion
 }
 
+const getPublicacionCategoria = async (categoria) => {
+    const response = await axios.get(API_PUBLICACIONES+`/categoria`+`/${categoria}`).catch(error => console.log(error));
+    return response.data.publicacion
+}
+
 const postPublicacion = async (publicacion) => {
     return await axios.post(API_PUBLICACIONES,{publicacion}).catch(error => console.log(error));
 }
@@ -18,5 +23,6 @@ const postPublicacion = async (publicacion) => {
 export {
     getPublicaciones,
     postPublicacion,
-    getPublicacion
+    getPublicacion,
+    getPublicacionCategoria
 }

@@ -2,10 +2,15 @@ import { View } from "native-base";
 import React from "react";
 import { StyleSheet, SafeAreaView, FlatList } from "react-native";
 import PublicacionFlatList from "../components/PublicacionFlatList.js";
+import CategoriaFlatList from "../components/CategoriaFlatList.js";
 const ButtonFlatList = ({ navigation, data, ruta, publicacion }) => {
 
     const goToPublicacion = (id) => {
         navigation.navigate(ruta, { itemId: id });
+    }
+
+    const goToCategoria = (titulo) => {
+        navigation.navigate(ruta, {itemTitulo: titulo});
     }
 
     const renderItem = ({ item }) => {
@@ -17,9 +22,9 @@ const ButtonFlatList = ({ navigation, data, ruta, publicacion }) => {
                         onPress={() => goToPublicacion(item.id)}
                     />
                     :
-                    <PublicacionFlatList
+                    <CategoriaFlatList
                         item={item}
-                        onPress={() => goToPublicacion(item.id)}
+                        onPress={() => goToCategoria(item.titulo)}
                     />
                 }
             </View>
@@ -32,6 +37,8 @@ const ButtonFlatList = ({ navigation, data, ruta, publicacion }) => {
                 data={data}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
+                numColumns={2}
+                ItemSeparatorComponent={() => <View style={{height: 20}} />}
             />
         </SafeAreaView>
     );
@@ -42,6 +49,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "space-around",
         alignItems: "center",
+        padding:10,
+        height:20,
         marginHorizontal: "5%",
         margin: 20,
     },
