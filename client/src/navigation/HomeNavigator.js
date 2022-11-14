@@ -26,7 +26,7 @@ export default function HomeNavigator() {
         component={BusquedaScreen}
         options={{
           headerShown: true,
-          title: "",
+          title: "Busqueda de Intereses",
       }}
       />
       <Stack.Screen

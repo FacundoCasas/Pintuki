@@ -1,35 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { StyleSheet, Text, View, Button, SafeAreaView } from "react-native";
 import { getCategorias } from "../services/CategoriaService.js";
 import ButtonFlatList from "../components/ButtonFlatList.js";
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function BusquedaScreen({ navigation }) {
 
   const [categorias, setCategorias] = useState([]);
 
-  useEffect(async () => {
+  const fetch = async () => {
     const response = await getCategorias();
     setCategorias(response)
-}, []);
+  }
 
-  const goHome = () => {
-    //Logica que modifica las preferencias del usuario seleccionadas
-    navigation.goBack();
-  };
+  useFocusEffect(
+    useCallback(() => {
+      fetch();
+    }, [])
+  );
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.buttonContainer}>
-        <Button title="Confirmar intereses" onPress={goHome} color="teal" />
-      </View>
       <Text style={styles.title}>Selecciona una categoria</Text>
-      <Text style={styles.description}></Text>
-      <ButtonFlatList
-        navigation={navigation}
-        data={categorias}
-        ruta={"categoria"}
-        publicacion={false}
-      />
+        <ButtonFlatList
+          navigation={navigation}
+          data={categorias}
+          ruta={"categoria"}
+          publicacion={false}
+        />
     </SafeAreaView>
   );
 }
@@ -44,8 +42,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    fontSize: 20,
-    color: "teal",
+    fontSize: 25,
+    color: "indigo.100",
     padding: 20,
   },
   description: {

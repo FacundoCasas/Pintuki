@@ -1,4 +1,3 @@
-import { View } from "native-base";
 import React from "react";
 import { StyleSheet, SafeAreaView, FlatList, View } from "react-native";
 import PublicacionFlatList from "../components/PublicacionFlatList.js";
