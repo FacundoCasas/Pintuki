@@ -87,7 +87,7 @@ export default function LogInScreen({ navigation }) {
                 Registrate!
               </Link>
             </HStack>
-            <Text>Para crear una publicacion necesitas loguearte</Text>
+            <Text justifyContent="center">Para crear una publicacion necesitas estar registrado</Text>
           </VStack>
         </Box>
       </Center>

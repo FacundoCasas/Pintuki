@@ -37,18 +37,20 @@ export const UserProvider = ({ children }) => {
 
   //SIGN IN EN PROCESO
   const signInUsuario = async (usuario, contrasenia) => {
+    console.log("sign in funcion context", "entro funcion ")
     let usuarioPorCrear = {
       usuario: usuario,
       contrasenia: contrasenia,
       fotoPerfil: "https://i.ibb.co/KjFFfmq/diego-pintuki-01.jpg",
     };
+    console.log("signin context front", "usuario funcion context")
     const usuarioCreado = await addUsuario(usuarioPorCrear)
     setUser(usuarioCreado);
     setIsAuthenticated(true);
   }
 
   return (
-    <UserContext.Provider value={{ user, isAuthenticated, loginUsuario, logOut }}>
+    <UserContext.Provider value={{ user, setUser, isAuthenticated, loginUsuario, logOut, signInUsuario }}>
       {children}
     </UserContext.Provider>
   );

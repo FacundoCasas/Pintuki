@@ -6,7 +6,7 @@ import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, C
 
 import { addUsuario } from '../services/UsuarioService.js';
 
-import { useAuth } from '../context/userContext.js';
+import { useAuth } from "../context/userContext";
 
 
     export default function LogInScreen ({navigation}){
@@ -14,21 +14,28 @@ import { useAuth } from '../context/userContext.js';
       const [usuario, setUsuario] = useState('');
       const [contrasenia, setContrasenia] = useState('');
 
-      const {signInUsuario} = useAuth
+      const {signInUsuario, setUser, isAuthenticated, setIsAuthenticated} = useAuth
       
-      /* const registrarUsuario = async () => {
+      const registrarUsuario = async () => {
         //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
         let usuarioCreado = {
           usuario: usuario,
           contrasenia: contrasenia,
           fotoPerfil: "https://i.ibb.co/KjFFfmq/diego-pintuki-01.jpg",
         };
-        await addUsuario(usuarioCreado)
-      }; */
 
-      const onClickSignIn = async () => {
+        setUser(await addUsuario(usuarioCreado))
+        await setIsAuthenticated(true)
+        if(isAuthenticated) {
+          navigation.navigate("HomeStack", { screen: "Home" });
+        }
+      }; 
+
+      const onClickSignIn = () => {
         try{
+          console.log("sign in usuario", "pre sign in funcion context")
           signInUsuario(usuario, contrasenia)
+          console.log("sign in usuario", "post sign in funcion context")
           navigation.navigate("HomeStack", { screen: "Home" });
         } catch (error) {
           //Acá va todo lo que quieren que haga si el login falla (mostrar un toast por ejemplo)
@@ -76,7 +83,7 @@ import { useAuth } from '../context/userContext.js';
                   placeholder="Constraseña"
                 />
           </FormControl> */}
-          <Button mt="2" colorScheme="indigo" onPress={onClickSignIn}>
+          <Button mt="2" colorScheme="indigo" onPress={registrarUsuario}>
             Registrarse
           </Button>
          
