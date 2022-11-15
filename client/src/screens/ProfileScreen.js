@@ -36,13 +36,18 @@ export default function ProfileScreen({ navigation }) {
     <>
       {isAuthenticated ? (
         <>
-        <Box>
-        <Fab  placement="top-right" mt={10}
-              icon={<ArrowBackIcon/>}
-              label={<Text>Cerrar Sesion</Text>}
+        
+        
+        <Button style={{
+                position: 'absolute',
+                right: 5,
+                top: 5,
+          }}   mt={10}
+              //icon={<ArrowBackIcon/>}
+              //label={<Text>Cerrar Sesion</Text>}
               onPress={logOutOnClick}
-        />
-        </Box>
+        > Cerrar Sesion</Button>
+        
         <Center flex={1} px="3" w="100%">
           
           <Box safeArea p="2" py="8" w="90%" maxW="290">
