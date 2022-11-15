@@ -37,12 +37,14 @@ export const UserProvider = ({ children }) => {
 
   //SIGN IN EN PROCESO
   const signInUsuario = async (usuario, contrasenia) => {
-    let usuarioCreado = {
+    let usuarioPorCrear = {
       usuario: usuario,
       contrasenia: contrasenia,
       fotoPerfil: "https://i.ibb.co/KjFFfmq/diego-pintuki-01.jpg",
     };
-    usuarioCreado = await addUsuario(usuarioCreado)
+    const usuarioCreado = await addUsuario(usuarioPorCrear)
+    setUser(usuarioCreado);
+    setIsAuthenticated(true);
   }
 
   return (

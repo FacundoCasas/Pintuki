@@ -14,9 +14,9 @@ import { useAuth } from '../context/userContext.js';
       const [usuario, setUsuario] = useState('');
       const [contrasenia, setContrasenia] = useState('');
 
-      const {user, setUser} = useAuth
+      const {signInUsuario} = useAuth
       
-      const registrarUsuario = async () => {
+      /* const registrarUsuario = async () => {
         //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
         let usuarioCreado = {
           usuario: usuario,
@@ -24,7 +24,17 @@ import { useAuth } from '../context/userContext.js';
           fotoPerfil: "https://i.ibb.co/KjFFfmq/diego-pintuki-01.jpg",
         };
         await addUsuario(usuarioCreado)
-      };
+      }; */
+
+      const onClickSignIn = async () => {
+        try{
+          signInUsuario(usuario, contrasenia)
+          navigation.navigate("HomeStack", { screen: "Home" });
+        } catch (error) {
+          //Acá va todo lo que quieren que haga si el login falla (mostrar un toast por ejemplo)
+        }
+
+      }
       
       
       
@@ -66,7 +76,7 @@ import { useAuth } from '../context/userContext.js';
                   placeholder="Constraseña"
                 />
           </FormControl> */}
-          <Button mt="2" colorScheme="indigo" onPress={registrarUsuario}>
+          <Button mt="2" colorScheme="indigo" onPress={onClickSignIn}>
             Registrarse
           </Button>
          

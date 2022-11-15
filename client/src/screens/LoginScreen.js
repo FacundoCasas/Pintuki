@@ -17,13 +17,13 @@ import { useAuth } from "../context/userContext";
 export default function LogInScreen({ navigation }) {
   const [usuario, setUsuario] = useState("");
   const [contrasenia, setContrasenia] = useState("");
-  const { loginUsuario, user, isAuthenticated } = useAuth();
+  const { loginUsuario } = useAuth();
 
   const onClick = () => {
     try {
       loginUsuario(usuario, contrasenia);
       //console.log("user", user);
-      console.log("isAuthenticated", isAuthenticated);
+      //console.log("isAuthenticated", isAuthenticated);
 
       navigation.navigate("HomeStack", { screen: "Home" });
     } catch (error) {
