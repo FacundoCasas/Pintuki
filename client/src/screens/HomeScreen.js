@@ -4,6 +4,7 @@ import ButtonFlatList from '../components/ButtonFlatList.js';
 import { getPublicaciones } from "../services/PublicacionService.js";
 //import { useIsFocused } from '@react-navigation/native';
 import { useFocusEffect } from '@react-navigation/native';
+import { COLORES } from "../globalStyles/globalStyles";
 import {
   StyleSheet,
   Text,
@@ -38,7 +39,7 @@ export default function HomeScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.buttonContainer}>
-        <Button title="Seleccionar intereses" onPress={goToBusqueda} color="teal" />
+        <Button title="Seleccionar intereses" onPress={goToBusqueda} color={COLORES.principal} />
       </View>
 
       <ButtonFlatList

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, SafeAreaView } from "react-native";
 import { getCategorias } from "../services/CategoriaService.js";
 import ButtonFlatList from "../components/ButtonFlatList.js";
 import { useFocusEffect } from '@react-navigation/native';
+import { getPublicacionCategoria } from '../services/PublicacionService.js';
 
 export default function BusquedaScreen({ navigation }) {
 
@@ -20,15 +21,15 @@ export default function BusquedaScreen({ navigation }) {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Selecciona una categoria</Text>
-        <ButtonFlatList
-          navigation={navigation}
-          data={categorias}
-          ruta={"categoria"}
-          publicacion={false}
-        />
-    </SafeAreaView>
+          <SafeAreaView style={styles.container}>
+          <Text style={styles.title}>Selecciona una categoria</Text>
+            <ButtonFlatList
+              navigation={navigation}
+              data={categorias}
+              ruta={"Home"}
+              publicacion={false}
+            />
+      </SafeAreaView>
   );
 }
 

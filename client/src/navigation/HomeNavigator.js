@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BusquedaScreen from "../screens/BusquedaScreen";
 import HomeScreen from "../screens/HomeScreen";
 import PublicacionScreen from "../screens/PublicacionScreen"
+import { COLORES } from "../globalStyles/globalStyles";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +17,7 @@ export default function HomeNavigator() {
           headerTitle: "Bienvenido a Pintuki",
           headerTintColor: "white",
           headerStyle: {
-            backgroundColor: "teal",
+            backgroundColor: COLORES.principal,
           },
           headerTitleAlign: "center",
         }}

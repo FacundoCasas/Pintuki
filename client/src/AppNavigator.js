@@ -2,6 +2,7 @@ import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeNavigator from "./navigation/HomeNavigator";
 import ProfileNavigator from "./navigation/ProfileNavigator";
+import { COLORES } from "./globalStyles/globalStyles";
 
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import NuevoPosteoScreen from "./screens/NuevoPosteoScreen";
@@ -17,7 +18,7 @@ export default function AppNavigator() {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: "teal",
+        tabBarActiveTintColor: COLORES.principal,
         tabBarInactiveTintColor: "grey",
       }}
     >

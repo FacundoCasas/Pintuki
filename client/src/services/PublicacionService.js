@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { API_PUBLICACIONES } from "../utils/Util";
+import { API_PUBLICACIONES, API_PUBLICACIONES_CATEGORIA } from "../utils/Util";
 import { uploadFile } from '../firebase/config';
 
 const getPublicaciones = async () => {
@@ -17,7 +17,7 @@ const getPublicacion = async (id) => {
 }
 
 const getPublicacionCategoria = async (categoria) => {
-    const response = await axios.get(API_PUBLICACIONES+`/categoria`+`/${categoria}`).catch(error => console.log(error));
+    const response = await axios.get(API_PUBLICACIONES_CATEGORIA+`/${categoria}`).catch(error => console.log(error));
     return response.data.publicacion
 }
 

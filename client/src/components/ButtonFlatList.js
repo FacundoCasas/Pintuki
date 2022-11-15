@@ -8,8 +8,8 @@ const ButtonFlatList = ({ navigation, data, ruta, publicacion }) => {
         navigation.navigate(ruta, { itemId: id });
     }
 
-    const goToCategoria = (titulo) => {
-        navigation.navigate(ruta, {itemTitulo: titulo});
+    const goToCategoria = (categoriaTitulo) => {
+        navigation.navigate(ruta);
     }
 
     const renderItem = ({ item }) => {
