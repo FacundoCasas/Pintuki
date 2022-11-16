@@ -46,7 +46,7 @@ export default function HomeScreen({ navigation, tituloCategoria }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.buttonContainer}>
-        <Button title="Seleccionar intereses" onPress={goToBusqueda} color={COLORES.principal} />
+        <Button title="Seleccionar intereses" onPress={goToBusqueda} color={COLORES.principalSuave} />
       </View>
 
       <ButtonFlatList

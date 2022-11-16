@@ -79,7 +79,7 @@ export default function LogInScreen({ navigation }) {
               </Text>
               <Link
                 _text={{
-                  color: "indigo.500",
+                  color: "warning.500",
                   fontWeight: "medium",
                   fontSize: "sm",
                 }}

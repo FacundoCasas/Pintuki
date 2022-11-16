@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-
+import { COLORESNB } from '../globalStyles/globalStyles.js';
 import LogoPintuki from "../components/LogoPintuki.js";
 
 import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider, Image } from "native-base";
@@ -83,7 +83,7 @@ import { useAuth } from "../context/userContext";
                   placeholder="Constraseña"
                 />
           </FormControl> */}
-          <Button mt="2" colorScheme="indigo" onPress={registrarUsuario}>
+          <Button mt="2" colorScheme={COLORESNB.principalScheme} onPress={registrarUsuario}>
             Registrarse
           </Button>
          

@@ -5,6 +5,7 @@ export const COLORES = {
     fondos: '#ffedd5',
     secundario: '#f97316',
     algo: '#f43f5e',
+    principalSuave: '#F24464',
   }
   
   export const COLORESNB = {
