@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import { useFocusEffect } from '@react-navigation/native';
 import {
   Box,
   Text,
@@ -17,6 +18,15 @@ import { COLORESNB } from "../globalStyles/globalStyles";
 export default function ProfileScreen({ navigation }) {
   // const [userLogueado, setUserLogueado] = useState(""); ---> Este userLogueado tiene que venir del contexto, para eso traigo el user del contexto usando el hook de useAuth()
   const { user, logOut, isAuthenticated } = useAuth();
+
+  const [nombreUsuario, setNombreUsuario] = useState("")
+
+  useFocusEffect(
+    useCallback(() => {
+      setNombreUsuario(user.usuario);
+    }, [])
+  );
+
 
   const logOutOnClick = () => {
     try {
@@ -37,8 +47,6 @@ export default function ProfileScreen({ navigation }) {
     <>
       {isAuthenticated ? (
         <>
-        
-        
         <Button style={{
                 position: 'absolute',
                 right: 5,

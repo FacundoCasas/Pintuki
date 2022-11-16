@@ -5,6 +5,7 @@ import { getPublicaciones } from "../services/PublicacionService.js";
 //import { useIsFocused } from '@react-navigation/native';
 import { useFocusEffect } from '@react-navigation/native';
 import { COLORES } from "../globalStyles/globalStyles";
+import LogoPintuki from '../components/LogoPintuki.js';
 import {
   StyleSheet,
   Text,

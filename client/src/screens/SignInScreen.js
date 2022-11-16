@@ -14,7 +14,7 @@ import { useAuth } from "../context/userContext";
       const [usuario, setUsuario] = useState('');
       const [contrasenia, setContrasenia] = useState('');
 
-      const {signInUsuario, setUser, isAuthenticated, setIsAuthenticated} = useAuth
+      const {signInUsuario, setUser, isAuthenticated, setIsAuthenticated} = useAuth()
       
       const registrarUsuario = async () => {
         //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
@@ -31,10 +31,10 @@ import { useAuth } from "../context/userContext";
         }
       }; 
 
-      const onClickSignIn = () => {
+      const onClickSignIn = async () => {
         try{
           console.log("sign in usuario", "pre sign in funcion context")
-          signInUsuario(usuario, contrasenia)
+          await signInUsuario(usuario, contrasenia)
           console.log("sign in usuario", "post sign in funcion context")
           navigation.navigate("HomeStack", { screen: "Home" });
         } catch (error) {
@@ -72,7 +72,7 @@ import { useAuth } from "../context/userContext";
             <Input type="password" 
                   onChangeText={setContrasenia}
                   value={contrasenia}
-                  placeholder="Constraseña"
+                  placeholder="Contraseña"
                 />
           </FormControl>
           {/* <FormControl>
@@ -83,7 +83,7 @@ import { useAuth } from "../context/userContext";
                   placeholder="Constraseña"
                 />
           </FormControl> */}
-          <Button mt="2" colorScheme={COLORESNB.principalScheme} onPress={registrarUsuario}>
+          <Button mt="2" colorScheme={COLORESNB.principalScheme} onPress={onClickSignIn}>
             Registrarse
           </Button>
          
