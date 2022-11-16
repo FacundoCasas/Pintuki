@@ -11,7 +11,7 @@ const PublicacionFlatList = ({ item, onPress }) => {
                     <Image source={{ uri: url }} style={styles.thumbnail} />
                 </TouchableOpacity> */
 
-        <Box maxW="150" rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
+        <Box maxW="175" m="1" /* overflow="hidden" */ borderColor="coolGray.200" borderWidth="1" /* _dark={{
             borderColor: "coolGray.600",
             backgroundColor: "gray.700"
         }} _web={{
@@ -19,19 +19,19 @@ const PublicacionFlatList = ({ item, onPress }) => {
             borderWidth: 0
         }} _light={{
             backgroundColor: "gray.50"
-        }}>
-            <Button onPress={onPress} _dark={{
+        }} */>
+            <TouchableOpacity  onPress={onPress}  /* _dark={{
                 borderColor: "coolGray.600",
                 backgroundColor: "gray.700"
             }} _light={{
                 backgroundColor: "gray.50"
-            }}>
+            }} */>
                 <AspectRatio w="100%" ratio={16 / 16}>
-                    <Image source={{
+                    <Image rounded="sm" source={{
                         uri: url
                     }} alt="image" />
                 </AspectRatio>
-            </Button>
+            </TouchableOpacity>
         </Box>
 
     )

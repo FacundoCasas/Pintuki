@@ -37,7 +37,7 @@ const ButtonFlatList = ({ navigation, data, ruta, publicacion }) => {
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 numColumns={2}
-                ItemSeparatorComponent={() => <View style={{height: 20}} />}
+                ItemSeparatorComponent={() => <View style={{height: 0}} />}
             />
         </SafeAreaView>
     );
@@ -48,10 +48,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "space-around",
         alignItems: "center",
-        padding:10,
+        /* padding:10,
         height:20,
         marginHorizontal: "5%",
-        margin: 20,
+        margin: 20, */
     },
     title: {
         fontWeight: "bold",
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         paddingBottom: "2%",
     },
     buttonContainer: {
-        width: "90%",
+        width: "100%",
         marginBottom: 20,
     },
     image: {

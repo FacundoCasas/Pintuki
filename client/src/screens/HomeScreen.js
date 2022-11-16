@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-around",
     alignItems: "center",
-    marginHorizontal: "5%",
-    margin: 20,
+   /*  marginHorizontal: "5%",
+    margin: 20, */
   },
   title: {
     fontWeight: "bold",
@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
     paddingBottom: "2%",
   },
   buttonContainer: {
-    width: "90%",
-    marginBottom: 20,
+    width: "100%",
+    /* marginBottom: 20, */
   },
   image: {
     width: "80%",
