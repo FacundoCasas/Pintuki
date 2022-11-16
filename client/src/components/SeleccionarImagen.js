@@ -37,7 +37,7 @@ const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
   if (selectedImage !== null) {
     return (
       <NativeBaseProvider>
-        <Center flex={1} px="3" w="100%">
+        <Center flex={1} px="3" w="100%" backgroundColor={COLORESNB.fondos}>
           
             <VStack space={3} mt="5">
               <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />

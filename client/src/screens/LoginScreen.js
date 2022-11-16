@@ -34,7 +34,7 @@ export default function LogInScreen({ navigation }) {
 
   return (
     <NativeBaseProvider>
-      <Center flex={1} px="3" w="100%">
+      <Center flex={1} px="3" w="100%" backgroundColor={COLORESNB.fondos}>
         <Box safeArea p="2" py="8" w="90%" maxW="290">
           <Center>
             <LogoPintuki />

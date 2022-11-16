@@ -49,7 +49,7 @@ export default function App({ navigation }) {
 */
   return (
     <NativeBaseProvider>
-        <View style={styles.container}>
+        <View style={styles.container} backgroundColor={COLORESNB.fondos}>
         
         <SafeAreaView>
           <SeleccionarImagen
