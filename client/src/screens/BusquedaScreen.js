@@ -4,6 +4,7 @@ import { getCategorias } from "../services/CategoriaService.js";
 import ButtonFlatList from "../components/ButtonFlatList.js";
 import { useFocusEffect } from '@react-navigation/native';
 import { getPublicacionCategoria } from '../services/PublicacionService.js';
+import { COLORES } from '../globalStyles/globalStyles.js';
 
 export default function BusquedaScreen({ navigation }) {
 
@@ -21,7 +22,7 @@ export default function BusquedaScreen({ navigation }) {
   );
 
   return (
-          <SafeAreaView style={styles.container}>
+          <SafeAreaView style={styles.container} backgroundColor={COLORES.fondos}>
           <Text style={styles.title}>Selecciona una categoria</Text>
             <ButtonFlatList
               navigation={navigation}

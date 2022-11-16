@@ -58,7 +58,7 @@ export default function ProfileScreen({ navigation }) {
               colorScheme={COLORESNB.principalScheme}
         > Cerrar Sesion</Button>
         
-        <Center flex={1} px="3" w="100%">
+        <Center flex={1} px="3" w="100%" backgroundColor={COLORESNB.fondos}>
           
           <Box safeArea p="2" py="8" w="90%" maxW="290">
             <Center>
