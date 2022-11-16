@@ -4,6 +4,7 @@ import { VStack, Input, Button, HStack, Center, Text, Image, useBreakpointValue,
 import { getPublicacion } from '../services/PublicacionService';
 import { agregarFavoritos } from '../services/UsuarioService'
 import { Ionicons } from "@expo/vector-icons";
+import { COLORESNB } from '../globalStyles/globalStyles';
 
 export default function App({ route, navigation }) {
 
@@ -44,7 +45,7 @@ export default function App({ route, navigation }) {
                     <Text>{publicacion.titulo}</Text>
                 </VStack>
                 <Box m="5" px="30%" />
-                <Button  onPress={botonFavoritos} leftIcon={<FavouriteIcon />} />
+                <Button  onPress={botonFavoritos} colorScheme={COLORESNB.secundarioScheme} leftIcon={<FavouriteIcon />} />
             </HStack>
         </Box>
     );

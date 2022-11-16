@@ -11,6 +11,7 @@ import {
 } from "native-base";
 import LogInScreen from "./LoginScreen.js";
 import { useAuth } from "../context/userContext.js";
+import { COLORESNB } from "../globalStyles/globalStyles";
 
 export default function ProfileScreen({ navigation }) {
   // const [userLogueado, setUserLogueado] = useState(""); ---> Este userLogueado tiene que venir del contexto, para eso traigo el user del contexto usando el hook de useAuth()
@@ -46,6 +47,7 @@ export default function ProfileScreen({ navigation }) {
               //icon={<ArrowBackIcon/>}
               //label={<Text>Cerrar Sesion</Text>}
               onPress={logOutOnClick}
+              colorScheme={COLORESNB.principalScheme}
         > Cerrar Sesion</Button>
         
         <Center flex={1} px="3" w="100%">
@@ -56,7 +58,7 @@ export default function ProfileScreen({ navigation }) {
                 size={90}
                 borderRadius={100}
                 borderWidth={2}
-                borderColor={"black"}
+                borderColor={COLORESNB.letras}
                 m="3"
                 source={{
                   uri: user.fotoPerfil,
@@ -76,7 +78,7 @@ export default function ProfileScreen({ navigation }) {
             >
               <Button
                 mt="2"
-                colorScheme="indigo"
+                colorScheme="warning"
                 onPress={() => console.log("Pintukis Favoritos")}
               >
                 Pintukis Favoritos
@@ -85,7 +87,7 @@ export default function ProfileScreen({ navigation }) {
               <Button
                 variant="outline"
                 mt="2"
-                colorScheme="indigo"
+                colorScheme="warning"
                 onPress={() => console.log("Pintukis Creados")}
               >
                 Pintukis Creados

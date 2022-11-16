@@ -1,12 +1,26 @@
 /* Color Theme Swatches in Hex */
 export const COLORES = {
-    principal: '#F24464',
-    letras: '#252E40',
-    fondos: '#F2B999',
-    secundario: '#F26241',
-    algo: '#F24472',
+    principal: '#e11d48',
+    letras: '#002851',
+    fondos: '#ffedd5',
+    secundario: '#f97316',
+    algo: '#f43f5e',
+  }
+  
+  export const COLORESNB = {
+    principal: 'rose.600',
+    letras: 'darkBlue.800',
+    fondos: 'warning.100',
+    secundario: 'warning.500',
+    algo: 'rose.500',
+    principalScheme: 'rose',
+    letrasScheme: 'darkBlue',
+    fondosScheme: 'warning',
+    secundarioScheme: 'warning',
+    algoScheme: 'rose',
 
   }
+
 
  /*   
 .Ilustración-1-hex { color: #F24464; } Botones Principales, navigator y header 

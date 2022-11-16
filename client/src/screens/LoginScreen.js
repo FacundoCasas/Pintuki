@@ -13,6 +13,7 @@ import {
   NativeBaseProvider,
 } from "native-base";
 import { useAuth } from "../context/userContext";
+import { COLORESNB } from '../globalStyles/globalStyles';
 
 export default function LogInScreen({ navigation }) {
   const [usuario, setUsuario] = useState("");
@@ -63,7 +64,7 @@ export default function LogInScreen({ navigation }) {
               placeholder="Constraseña"
             />
 
-            <Button mt="2" colorScheme="indigo" onPress={onClick}>
+            <Button mt="2" colorScheme={COLORESNB.algoScheme} onPress={onClick}>
               Iniciar Sesión
             </Button>
             <HStack mt="6" justifyContent="center">

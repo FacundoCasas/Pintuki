@@ -3,6 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View, TextInput, SafeAreaView } fro
 import { VStack,  Input,  Button, HStack, Center, NativeBaseProvider, Image, useBreakpointValue, Box} from "native-base";
 import { postPublicacion } from '../services/PublicacionService';
 import SeleccionarImagen from '../components/SeleccionarImagen'
+import { COLORESNB } from '../globalStyles/globalStyles';
 
 import { useAuth } from '../context/userContext';
 
@@ -69,7 +70,7 @@ export default function App({ navigation }) {
             placeholder="Categoria"
           />
           
-          <Button mb="10" mt="2" colorScheme="indigo" onPress={publicar} >
+          <Button mb="10" mt="2" colorScheme={COLORESNB.algoScheme} onPress={publicar} >
             Publicar
           </Button>
           </VStack>

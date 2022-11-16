@@ -28,6 +28,10 @@ export default function HomeNavigator() {
         options={{
           headerShown: true,
           title: "Busqueda de Intereses",
+          headerTintColor: "white",
+          headerStyle: {
+            backgroundColor: COLORES.principal,
+          },
       }}
       />
       <Stack.Screen

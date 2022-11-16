@@ -3,6 +3,7 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { NativeBaseProvider, Button, VStack, Center, Box } from 'native-base';
+import { COLORESNB } from '../globalStyles/globalStyles';
 
 const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
 
@@ -40,15 +41,15 @@ const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
           
             <VStack space={3} mt="5">
               <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
-              <Button.Group isAttached colorScheme="blue" mx={{
+              <Button.Group isAttached colorScheme={COLORESNB.secundarioScheme} mx={{
                   base: "auto",
                   md: 0
                 }} size="sm">
-                <Button mt="2" colorScheme="indigo" onPress={openShareDialogAsync} >
+                <Button mt="2" colorScheme={COLORESNB.secundarioScheme} onPress={openShareDialogAsync} >
                 Compartir Foto
                 </Button>
 
-                <Button variant="outline" mt="2" colorScheme="indigo" onPress={openImagePickerAsync} >
+                <Button variant="outline" mt="2" colorScheme={COLORESNB.secundarioScheme} onPress={openImagePickerAsync} >
                 Cambiar Foto
                 </Button>
               </Button.Group>
@@ -66,7 +67,7 @@ const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
         <VStack space={3} mt="5">
           <Image source={{ uri: 'https://i.imgur.com/TkIrScD.png' }} style={styles.logo} />
 
-            <Button colorScheme="indigo" onPress={openImagePickerAsync} >
+            <Button colorScheme={COLORESNB.secundarioScheme} onPress={openImagePickerAsync} >
             Selecciona una Foto
             </Button>
         </VStack>
