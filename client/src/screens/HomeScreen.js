@@ -15,10 +15,14 @@ import {
   FlatList
 } from "react-native";
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen({ navigation, tituloCategoria }) {
 
   const [publicaciones, setPublicaciones] = useState([]);
   //const isFocused = useIsFocused();
+
+  //Agregar const publicaciones a mostrar
+
+  //Si el parametro titulo categoria esta vacio muestra todas las publicaciones, sino filtra las categorias
 
   const goToBusqueda = () => {
     navigation.navigate("Busqueda");
@@ -26,7 +30,10 @@ export default function HomeScreen({ navigation }) {
 
   const fetch = async () => {
     const response = await getPublicaciones();
+    //if tituloCategoria is null
     setPublicaciones(response)
+    //else filtrar por titulo categoria
+    //SetPublicaciones
   }
 
   useFocusEffect(

@@ -9,6 +9,7 @@ import {
   Fab,
   ArrowBackIcon,
 } from "native-base";
+import { ButtonFlatList } from "native-base";
 import LogInScreen from "./LoginScreen.js";
 import { useAuth } from "../context/userContext.js";
 import { COLORESNB } from "../globalStyles/globalStyles";
@@ -28,7 +29,6 @@ export default function ProfileScreen({ navigation }) {
       //Acá va todo lo que quieren que haga si el login falla (mostrar un toast por ejemplo)
     }
   };
-
 
   if (isAuthenticated) {
     console.log("ProfileScreen: user en contexto: ", user);
@@ -94,6 +94,8 @@ export default function ProfileScreen({ navigation }) {
               </Button>
             </Button.Group>
           </Box>
+
+
         </Center>
         </>
       ) : (
