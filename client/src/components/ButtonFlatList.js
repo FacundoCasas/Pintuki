@@ -9,7 +9,7 @@ const ButtonFlatList = ({ navigation, data, ruta, publicacion }) => {
     }
 
     const goToCategoria = (categoriaTitulo) => {
-        navigation.navigate(ruta);
+        navigation.navigate(ruta, {categoriaTitulo});
     }
 
     const renderItem = ({ item }) => {
