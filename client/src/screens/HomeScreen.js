@@ -16,7 +16,7 @@ import {
   FlatList
 } from "react-native";
 
-export default function HomeScreen({ navigation, tituloCategoria }) {
+export default function HomeScreen({ navigation, route }) {
 
   const [publicaciones, setPublicaciones] = useState([]);
   //const isFocused = useIsFocused();
@@ -41,8 +41,20 @@ export default function HomeScreen({ navigation, tituloCategoria }) {
     useCallback(() => {
       fetch();
     }, [])
-  );
+  )
 
+  let categoria = null;
+  let publicacionesPorMostrar;
+
+  if(route.params !== undefined){
+    categoria = route.params.categoriaTitulo
+  }
+
+  if(categoria !== null){
+    publicacionesPorMostrar = publicaciones.filter(publicacion => publicacion.etiquetas === categoria)
+  } else{
+    publicacionesPorMostrar = publicaciones;
+  }
 
   return (
     <SafeAreaView style={styles.container} backgroundColor={COLORES.fondos}>
@@ -52,7 +64,7 @@ export default function HomeScreen({ navigation, tituloCategoria }) {
 
       <ButtonFlatList
         navigation={navigation}
-        data={publicaciones}
+        data={publicacionesPorMostrar}
         ruta={"Publicacion"}
         publicacion={true}
       />
