@@ -15,6 +15,10 @@ export default function BusquedaScreen({ navigation }) {
     setCategorias(response)
   }
 
+  const limpiarIntereses = () => {
+    navigation.navigate("Home");
+}
+
   useFocusEffect(
     useCallback(() => {
       fetch();
@@ -23,13 +27,14 @@ export default function BusquedaScreen({ navigation }) {
 
   return (
           <SafeAreaView style={styles.container} backgroundColor={COLORES.fondos}>
-          <Text style={styles.title}>Selecciona una categoria</Text>
+          <Text style={styles.title}>Seleccionar una categoria</Text>
             <ButtonFlatList
               navigation={navigation}
               data={categorias}
               ruta={"Home"}
               publicacion={false}
             />
+            <Button title="Limpiar intereses" onPress={limpiarIntereses} color={COLORES.principalSuave}/>
       </SafeAreaView>
   );
 }
@@ -52,8 +57,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "gray",
     paddingBottom: "2%",
-  },
-  buttonContainer: {
-    width: "90%",
-  },
+  }
 });
