@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { API_USUARIOS } from "../utils/Util";
+import { API_USUARIOS,API_USUARIOS_FAVORITOS } from "../utils/Util";
 
 const getUsuario = async (clave) => {
     const response = await axios.post(API_USUARIOS + "/login", {clave}).catch(error => console.log(error));
