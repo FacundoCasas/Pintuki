@@ -5,6 +5,7 @@ import { getPublicacion } from '../services/PublicacionService';
 import { agregarFavoritos } from '../services/UsuarioService'
 import { Ionicons } from "@expo/vector-icons";
 import { COLORESNB } from '../globalStyles/globalStyles';
+import { useAuth } from "../context/userContext.js";
 
 export default function App({ route, navigation }) {
 
@@ -16,6 +17,8 @@ export default function App({ route, navigation }) {
         setPublicacion(response)
     }
 
+    const { user, isAuthenticated } = useAuth();
+
     useEffect(() => {
         fetch()
     }, []);
@@ -24,7 +27,7 @@ export default function App({ route, navigation }) {
         //agregarFavoritos del usuario logeado
         console.log("Agregando a fav")
         const data = {
-            username:"admin",
+            username:user.usuario,
             publicacionId: publicacion.id
         }
         await agregarFavoritos(data);
@@ -45,12 +48,15 @@ export default function App({ route, navigation }) {
                     <Text>{publicacion.titulo}</Text>
                 </VStack>
                 <Box m="5" px="30%" />
-                <Button  onPress={botonFavoritos} colorScheme={COLORESNB.secundarioScheme} leftIcon={<FavouriteIcon />} />
+                {isAuthenticated &&
+                <Button onPress={botonFavoritos} colorScheme={COLORESNB.secundarioScheme} leftIcon={<FavouriteIcon />} />
+                }
             </HStack>
         </Box>
     );
 
 }
+/* {isAuthenticated &&  */
 
 const styles = StyleSheet.create({
     container: {
