@@ -19,7 +19,6 @@ export const UserProvider = ({ children }) => {
       username: user,
       password: pass,
     };
-      console.log("aca context")
       const loguedUser = await getUsuario(clave);
       if (loguedUser !== null ){
         setUser(loguedUser);
@@ -42,7 +41,6 @@ export const UserProvider = ({ children }) => {
 
   //SIGN IN EN PROCESO
   const signInUsuario = async (usuario, contrasenia) => {
-    //console.log("sign in funcion context", "entro funcion ")
     let usuarioPorCrear = {
       usuario: usuario,
       contrasenia: contrasenia,
@@ -50,19 +48,14 @@ export const UserProvider = ({ children }) => {
     };
     try{
       const usuarioCreado = await addUsuario(usuarioPorCrear)
-      console.log("sign in usuario", usuarioCreado.data)
-      if(usuarioCreado !== null){
-        setUser(usuarioCreado);
-        setIsAuthenticated(true);
+      if(usuarioCreado){
+        loginUsuario(usuarioPorCrear.usuario, usuarioPorCrear.contrasenia)
       }else{
         return null
       }
-      
     }catch(e){
-
-    }
-    //console.log("signin context front", "usuario funcion context")
     
+    }
   }
 
   const agregarAFavoritosContext = async (id) => {

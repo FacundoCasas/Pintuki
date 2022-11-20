@@ -26,10 +26,8 @@ export default function LogInScreen({ navigation }) {
 
   const onClick = async () => {
     try {
-      console.log("aca")
       const result = await loginUsuario(usuario, contrasenia);
-      console.log(result)
-      if(result == null){
+      if(result === null){
         toast.show({
           description: "El usuario o contraseña ingresado es incorrecto o no se encuentra registrado"
         })
@@ -39,7 +37,6 @@ export default function LogInScreen({ navigation }) {
       
     } catch (error) {
       //Acá va todo lo que quieren que haga si el login falla (mostrar un toast por ejemplo)
-      console.log("catch login screen", error)
       
     }
   };

@@ -15,63 +15,35 @@ import { useAuth } from "../context/userContext";
 
       const [usuario, setUsuario] = useState('');
       const [contrasenia, setContrasenia] = useState('');
-
       const {signInUsuario, setUser, isAuthenticated, setIsAuthenticated} = useAuth()
-      
-     /*  const registrarUsuario = async () => {
-        //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
-        let usuarioCreado = {
-          usuario: usuario,
-          contrasenia: contrasenia,
-          fotoPerfil: "https://i.ibb.co/KjFFfmq/diego-pintuki-01.jpg",
-        };
-
-        setUser(await addUsuario(usuarioCreado))
-        await setIsAuthenticated(true)
-        if(isAuthenticated) {
-          navigation.navigate("HomeStack", { screen: "Home" });
-        }
-      };  */
 
       const onClickSignIn = async () => {
         try{
-          console.log("pre sign in")
-          //console.log("sign in usuario", "pre sign in funcion context")
           const result = await signInUsuario(usuario, contrasenia)
-          //console.log("sign in usuario", "post sign in funcion context")
-          console.log("prueba sign in")
-          console.log(result)
-          if(result !== undefined){
-            navigation.navigate("HomeStack", { screen: "Home" });
-          }else{
+          if(result === null){
             toast.show({
               description: "El nombre de usuario ya existe"
             })
+          }else{
+            navigation.goBack()
+            navigation.navigate("HomeStack", { screen: "Home" });
           }
-
         } catch (error) {
-          console.log("error", error)
-          
           //Acá va todo lo que quieren que haga si el login falla (mostrar un toast por ejemplo)
         }
-
       }
-      
       
       
       return (
           <NativeBaseProvider>
             <Center flex={1} px="3" w="100%" backgroundColor={COLORESNB.fondos}>
               <Box safeArea p="2" py="8" w="90%" maxW="290" >
-
             <Center>
                 <LogoPintuki/>
-
                 <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{ color: "warmGray.50" }}>
                 Registrarte
                 </Heading>
             </Center>
-
         <VStack space={3} mt="5">
           <FormControl>
             <FormControl.Label>Elegi tu nombre de usuario</FormControl.Label>
