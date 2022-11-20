@@ -26,12 +26,12 @@ export const UserProvider = ({ children }) => {
 
   const logOut = () => {
     setUser(
-      usuario= "",
-      contraseni= "",
-      fotoPerfil= "",
-      publicacionesFavoritas= [],
-      publicacionesCreadas= []
-      );
+      usuario = "",
+      contraseni = "",
+      fotoPerfil = "",
+      publicacionesFavoritas = [],
+      publicacionesCreadas = []
+    );
     setIsAuthenticated(false);
   }
 
@@ -49,8 +49,15 @@ export const UserProvider = ({ children }) => {
     setIsAuthenticated(true);
   }
 
+  const agregarAFavoritosContext = async (id) => {
+    console.log("agregarAFavoritos")
+    user.publicacionesFavoritas.push(id);
+    console.log(user)
+    setUser(user);
+  }
+
   return (
-    <UserContext.Provider value={{ user, setUser, isAuthenticated, loginUsuario, logOut, signInUsuario }}>
+    <UserContext.Provider value={{ user, setUser, isAuthenticated, loginUsuario, logOut, signInUsuario, agregarAFavoritosContext }}>
       {children}
     </UserContext.Provider>
   );
