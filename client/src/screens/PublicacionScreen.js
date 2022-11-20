@@ -17,7 +17,7 @@ export default function App({ route, navigation }) {
         setPublicacion(response)
     }
 
-    const { user, isAuthenticated } = useAuth();
+    const { user, isAuthenticated, agregarAFavoritosContext } = useAuth();
 
     useEffect(() => {
         fetch()
@@ -25,13 +25,25 @@ export default function App({ route, navigation }) {
 
     const botonFavoritos = async () => {
         //agregarFavoritos del usuario logeado
-        console.log("Agregando a fav")
-        const data = {
-            username:user.usuario,
-            publicacionId: publicacion.id
+        console.log("Agregando a fav publicaciones fav",user.publicacionesFavoritas)
+
+        if(await publicacionNoEstaEnFavoritos()){
+            console.log("ME AGREGE PAPA")
+            const data = {
+                username:user.usuario,
+                publicacionId: publicacion.id
+            }
+            await agregarFavoritos(data);
+            await agregarAFavoritosContext(publicacion.id);
+        }else{
+            console.log("EPA YA ESTA EN FAVORTIO PAPA")
         }
-        await agregarFavoritos(data);
     };
+
+    const publicacionNoEstaEnFavoritos = async () => {
+        console.log(!user.publicacionesFavoritas.includes(publicacion.id))
+        return !user.publicacionesFavoritas.includes(publicacion.id);
+    }
 
     const goBack = () => {
         navigation.goBack();
@@ -48,15 +60,14 @@ export default function App({ route, navigation }) {
                     <Text>{publicacion.titulo}</Text>
                 </VStack>
                 <Box m="5" px="30%" />
-                {isAuthenticated &&
-                <Button onPress={botonFavoritos} colorScheme={COLORESNB.secundarioScheme} leftIcon={<FavouriteIcon />} />
+                {isAuthenticated && publicacionNoEstaEnFavoritos() &&
+                    <Button onPress={botonFavoritos} colorScheme={COLORESNB.secundarioScheme} leftIcon={<FavouriteIcon />} />
                 }
             </HStack>
         </Box>
     );
 
 }
-/* {isAuthenticated &&  */
 
 const styles = StyleSheet.create({
     container: {
