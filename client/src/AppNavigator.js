@@ -39,7 +39,7 @@ export default function AppNavigator() {
         component={ isAuthenticated ? NuevoPosteoScreen: ProfileNavigator}
         options={{
           headerShown: false,
-          tabBarLabel: "Nuevo Posteo",
+          tabBarLabel: "Nuevo posteo",
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons name="plus" color={color} size={size} />
           ),
