@@ -11,24 +11,36 @@ import {
   HStack,
   Center,
   NativeBaseProvider,
+  useToast 
 } from "native-base";
 import { useAuth } from "../context/userContext";
 import { COLORESNB } from '../globalStyles/globalStyles';
+import codegenNativeCommands from "react-native/Libraries/Utilities/codegenNativeCommands";
 
 export default function LogInScreen({ navigation }) {
   const [usuario, setUsuario] = useState("");
   const [contrasenia, setContrasenia] = useState("");
   const { loginUsuario } = useAuth();
 
-  const onClick = () => {
-    try {
-      loginUsuario(usuario, contrasenia);
-      //console.log("user", user);
-      //console.log("isAuthenticated", isAuthenticated);
+  const toast = useToast();
 
-      navigation.navigate("HomeStack", { screen: "Home" });
+  const onClick = async () => {
+    try {
+      console.log("aca")
+      const result = await loginUsuario(usuario, contrasenia);
+      console.log(result)
+      if(result == null){
+        toast.show({
+          description: "El usuario o contraseña ingresado es incorrecto o no se encuentra registrado"
+        })
+      }else{
+        navigation.navigate("HomeStack", { screen: "Home" });
+      }
+      
     } catch (error) {
       //Acá va todo lo que quieren que haga si el login falla (mostrar un toast por ejemplo)
+      console.log("catch login screen", error)
+      
     }
   };
 

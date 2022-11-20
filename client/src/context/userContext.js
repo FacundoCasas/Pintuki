@@ -19,9 +19,14 @@ export const UserProvider = ({ children }) => {
       username: user,
       password: pass,
     };
-    const loguedUser = await getUsuario(clave);
-    setUser(loguedUser);
-    setIsAuthenticated(true);
+      console.log("aca context")
+      const loguedUser = await getUsuario(clave);
+      if (loguedUser !== null ){
+        setUser(loguedUser);
+        setIsAuthenticated(true);
+      }else{
+        return null
+      }
   };
 
   const logOut = () => {
@@ -37,16 +42,27 @@ export const UserProvider = ({ children }) => {
 
   //SIGN IN EN PROCESO
   const signInUsuario = async (usuario, contrasenia) => {
-    console.log("sign in funcion context", "entro funcion ")
+    //console.log("sign in funcion context", "entro funcion ")
     let usuarioPorCrear = {
       usuario: usuario,
       contrasenia: contrasenia,
       fotoPerfil: "https://i.ibb.co/KjFFfmq/diego-pintuki-01.jpg",
     };
-    console.log("signin context front", "usuario funcion context")
-    const usuarioCreado = await addUsuario(usuarioPorCrear)
-    setUser(usuarioCreado);
-    setIsAuthenticated(true);
+    try{
+      const usuarioCreado = await addUsuario(usuarioPorCrear)
+      console.log("sign in usuario", usuarioCreado.data)
+      if(usuarioCreado !== null){
+        setUser(usuarioCreado);
+        setIsAuthenticated(true);
+      }else{
+        return null
+      }
+      
+    }catch(e){
+
+    }
+    //console.log("signin context front", "usuario funcion context")
+    
   }
 
   const agregarAFavoritosContext = async (id) => {
