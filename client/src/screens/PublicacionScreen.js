@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { VStack, Input, Button, HStack, Center, Text, Image, useBreakpointValue, Box, AspectRatio, Icon, Heading, FavouriteIcon } from "native-base";
+import {
+    VStack, Button, HStack, Text, Image, Box, AspectRatio, Heading, FavouriteIcon,
+    useToast
+} from "native-base";
 import { getPublicacion } from '../services/PublicacionService';
 import { agregarFavoritos } from '../services/UsuarioService'
 import { Ionicons } from "@expo/vector-icons";
@@ -11,6 +14,7 @@ export default function App({ route, navigation }) {
 
     const { itemId } = route.params;
     const [publicacion, setPublicacion] = useState(null);
+    const toast = useToast();
 
     const fetch = async () => {
         const response = await getPublicacion(itemId);
@@ -25,18 +29,15 @@ export default function App({ route, navigation }) {
 
     const botonFavoritos = async () => {
         //agregarFavoritos del usuario logeado
-        console.log("Agregando a fav publicaciones fav",user.publicacionesFavoritas)
+        console.log("Agregando a fav publicaciones fav", user.publicacionesFavoritas)
 
-        if(await publicacionNoEstaEnFavoritos()){
-            console.log("ME AGREGE PAPA")
+        if (await publicacionNoEstaEnFavoritos()) {
             const data = {
-                username:user.usuario,
+                username: user.usuario,
                 publicacionId: publicacion.id
             }
             await agregarFavoritos(data);
             await agregarAFavoritosContext(publicacion.id);
-        }else{
-            console.log("EPA YA ESTA EN FAVORTIO PAPA")
         }
     };
 
@@ -60,8 +61,22 @@ export default function App({ route, navigation }) {
                     <Text>{publicacion.titulo}</Text>
                 </VStack>
                 <Box m="5" px="30%" />
-                {isAuthenticated && publicacionNoEstaEnFavoritos() &&
-                    <Button onPress={botonFavoritos} colorScheme={COLORESNB.secundarioScheme} leftIcon={<FavouriteIcon />} />
+                {isAuthenticated &&
+                    <>
+                        {publicacion &&
+                            <>
+                                {publicacionNoEstaEnFavoritos() === true ? 
+                                    <Button onPress={botonFavoritos} colorScheme={COLORESNB.secundarioScheme} leftIcon={<FavouriteIcon />} />
+                                 : 
+                                    <Button onPress={() => toast.show({
+                                        description: "Esta Publicacion ya fue Agregada"
+                                    })
+                                    } colorScheme={"muted"} leftIcon={<FavouriteIcon />} />
+                                
+                                }
+                            </>
+                        }
+                    </>
                 }
             </HStack>
         </Box>

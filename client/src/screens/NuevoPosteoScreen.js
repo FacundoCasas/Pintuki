@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, TextInput, SafeAreaView } from 'react-native';
-import { VStack,  Input,  Button, HStack, Center, NativeBaseProvider, Image, useBreakpointValue, Box} from "native-base";
+import React, { useState } from 'react';
+import { StyleSheet, View, SafeAreaView } from 'react-native';
+import { VStack,  Input,  Button, NativeBaseProvider} from "native-base";
 import { postPublicacion } from '../services/PublicacionService';
 import SeleccionarImagen from '../components/SeleccionarImagen'
 import { COLORESNB } from '../globalStyles/globalStyles';
@@ -19,8 +19,6 @@ export default function App({ navigation }) {
   const publicar = async () => {
     //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
     let publicacion = {
-      //id: 10,
-      //url: selectedImage.localUri,
       url: selectedImage,
       titulo: titulo,
       autor: user.usuario,
@@ -37,16 +35,7 @@ export default function App({ navigation }) {
     //cambiar con el componente nuevo
     setCategoria('')
   }
-/*
-<NativeBaseProvider>
-      <Center flex={1} px="3" w="100%">
-        <Box safeArea p="2" py="8" w="90%" maxW="290" >
 
-
-        </Box>
-      </Center>
-    <NativeBaseProvider>
-*/
   return (
     <NativeBaseProvider>
         <View style={styles.container} backgroundColor={COLORESNB.fondos}>
@@ -83,35 +72,6 @@ export default function App({ navigation }) {
    
   );
 }
-
-
-/*
-
- <View style={styles.container}>
-      <SafeAreaView>
-        <SeleccionarImagen
-          selectedImage={selectedImage}
-          setSelectedImage={setSelectedImage}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={setTitulo}
-          value={titulo}
-          placeholder="Titulo"
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={setCategoria}
-          value={categoria}
-          placeholder="Categoria"
-        />
-        <TouchableOpacity onPress={publicar} style={styles.button}>
-          <Text style={styles.buttonText}>Publicar</Text>
-        </TouchableOpacity>
-      </SafeAreaView>
-    </View>
-
-*/
 
 const styles = StyleSheet.create({
   container: {
