@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import { COLORESNB } from '../globalStyles/globalStyles.js';
 import LogoPintuki from "../components/LogoPintuki.js";
 
-import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider, Image } from "native-base";
+import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider, Image, useToast } from "native-base";
 
 import { addUsuario } from '../services/UsuarioService.js';
 
@@ -11,12 +11,14 @@ import { useAuth } from "../context/userContext";
 
     export default function LogInScreen ({navigation}){
         
+      const toast = useToast();
+
       const [usuario, setUsuario] = useState('');
       const [contrasenia, setContrasenia] = useState('');
 
       const {signInUsuario, setUser, isAuthenticated, setIsAuthenticated} = useAuth()
       
-      const registrarUsuario = async () => {
+     /*  const registrarUsuario = async () => {
         //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
         let usuarioCreado = {
           usuario: usuario,
@@ -29,15 +31,27 @@ import { useAuth } from "../context/userContext";
         if(isAuthenticated) {
           navigation.navigate("HomeStack", { screen: "Home" });
         }
-      }; 
+      };  */
 
       const onClickSignIn = async () => {
         try{
-          console.log("sign in usuario", "pre sign in funcion context")
-          await signInUsuario(usuario, contrasenia)
-          console.log("sign in usuario", "post sign in funcion context")
-          navigation.navigate("HomeStack", { screen: "Home" });
+          console.log("pre sign in")
+          //console.log("sign in usuario", "pre sign in funcion context")
+          const result = await signInUsuario(usuario, contrasenia)
+          //console.log("sign in usuario", "post sign in funcion context")
+          console.log("prueba sign in")
+          console.log(result)
+          if(result !== undefined){
+            navigation.navigate("HomeStack", { screen: "Home" });
+          }else{
+            toast.show({
+              description: "El nombre de usuario ya existe"
+            })
+          }
+
         } catch (error) {
+          console.log("error", error)
+          
           //Acá va todo lo que quieren que haga si el login falla (mostrar un toast por ejemplo)
         }
 
