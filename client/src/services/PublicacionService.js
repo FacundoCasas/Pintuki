@@ -17,7 +17,7 @@ const getPublicacion = async (id) => {
 }
 
 const getPublicacionCategoria = async (categoria) => {
-    const response = await axios.get(API_PUBLICACIONES_CATEGORIA+`/${categoria}`).catch(error => console.log(error));
+    const response = await axios.get(API_PUBLICACIONES_CATEGORIA + `/${categoria}`).catch(error => console.log(error));
     return response.data.publicacion
 }
 
@@ -38,23 +38,23 @@ const postPublicacion = async (publicacion) => {
 }
 
 const getPublicacionesFavoritas = async (data) => {
-    try{
-        const response = await axios.post(API_PUBLICACIONES+"/favoritos", {data}).catch(error => console.log(error));
-        console.log("servicio publicacion favs",response.data)
+    try {
+        const response = await axios.post(API_PUBLICACIONES + "/favoritos", { data }).catch(error => console.log(error));
+        console.log("servicio publicacion favs", response.data)
         return response.data
-        
-    }catch (error){
-        console.log("Fron servicio post favs",error)
+
+    } catch (error) {
+        console.log("Fron servicio post favs", error)
     }
 }
 
 const getPublicacionesCreadas = async (usuario) => {
-    try{
-        const response = await axios.get(API_PUBLICACIONES+`/usuario/${usuario}`).catch(error => console.log(error));
-        console.log("servicio publicacion creadas",response.data)
+    try {
+        const response = await axios.get(API_PUBLICACIONES + `/usuario/${usuario}`).catch(error => console.log(error));
+        console.log("servicio publicacion creadas", response.data)
         return response.data
-    }catch (error){
-        console.log("Fron servicio post creados",error)
+    } catch (error) {
+        console.log("Fron servicio post creados", error)
     }
 }
 

@@ -32,7 +32,7 @@ export default function HomeNavigator() {
           headerStyle: {
             backgroundColor: COLORES.principal,
           },
-      }}
+        }}
       />
       <Stack.Screen
         name="Publicacion"

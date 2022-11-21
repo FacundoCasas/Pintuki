@@ -9,7 +9,7 @@ const ButtonFlatList = ({ navigation, data, ruta, publicacion }) => {
     }
 
     const goToCategoria = (categoriaTitulo) => {
-        navigation.navigate(ruta, {categoriaTitulo});
+        navigation.navigate(ruta, { categoriaTitulo });
     }
 
     const renderItem = ({ item }) => {
@@ -37,7 +37,8 @@ const ButtonFlatList = ({ navigation, data, ruta, publicacion }) => {
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 numColumns={2}
-                ItemSeparatorComponent={() => <View style={{height: 0}} />}
+                initialNumToRender={10}
+                ItemSeparatorComponent={() => <View style={{ height: 0 }} />}
             />
         </SafeAreaView>
     );

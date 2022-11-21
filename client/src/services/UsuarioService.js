@@ -1,27 +1,27 @@
 import axios from 'axios'
-import { API_USUARIOS,API_USUARIOS_FAVORITOS } from "../utils/Util";
+import { API_USUARIOS, API_USUARIOS_FAVORITOS } from "../utils/Util";
 
 const getUsuario = async (clave) => {
-    try{
+    try {
         console.log("usuario get")
-        const response = await axios.post(API_USUARIOS + "/login", {clave});
+        const response = await axios.post(API_USUARIOS + "/login", { clave });
         //console.log("ServicioFront", response.data)
         return response.data
-    }catch(error) {
+    } catch (error) {
         console.log("usr service", error)
         throw new error
     }
-    
+
 }
 
 const addUsuario = async (usuario) => {
-    try{
+    try {
         console.log("usuario get")
-        const response = await axios.post(API_USUARIOS,{usuario});
+        const response = await axios.post(API_USUARIOS, { usuario });
         //console.log("ServicioFront", response.data)
         console.log(response.data)
         return response.data
-    }catch(error) {
+    } catch (error) {
         console.log("usr service", error)
         throw new error
     }

@@ -7,12 +7,12 @@ const getCategorias = async () => {
 }
 
 const getCategoria = async (id) => {
-    const response = await axios.get(API_CATEGORIAS+`/${id}`).catch(error => console.log(error));
+    const response = await axios.get(API_CATEGORIAS + `/${id}`).catch(error => console.log(error));
     return response.data
 }
 
 const postCategoria = async (categoria) => {
-    return await axios.post(API_CATEGORIAS,{categoria}).catch(error => console.log(error));
+    return await axios.post(API_CATEGORIAS, { categoria }).catch(error => console.log(error));
 }
 
 export {

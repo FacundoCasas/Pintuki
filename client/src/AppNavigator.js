@@ -36,7 +36,7 @@ export default function AppNavigator() {
       <Tab.Screen
         name="NuevoPosteo"
         //component={user ? NuevoPosteoScreen : Login}
-        component={ isAuthenticated ? NuevoPosteoScreen: ProfileNavigator}
+        component={isAuthenticated ? NuevoPosteoScreen : ProfileNavigator}
         options={{
           headerShown: false,
           tabBarLabel: "Nuevo posteo",

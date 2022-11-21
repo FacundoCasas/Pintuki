@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { StyleSheet, Text, View, Button, SafeAreaView } from "react-native";
+import React, { useState, useCallback } from 'react';
+import { StyleSheet, Text, Button, SafeAreaView } from "react-native";
 import { getCategorias } from "../services/CategoriaService.js";
 import ButtonFlatList from "../components/ButtonFlatList.js";
 import { useFocusEffect } from '@react-navigation/native';
-import { getPublicacionCategoria } from '../services/PublicacionService.js';
 import { COLORES } from '../globalStyles/globalStyles.js';
 
 export default function BusquedaScreen({ navigation }) {
@@ -17,7 +16,7 @@ export default function BusquedaScreen({ navigation }) {
 
   const limpiarIntereses = () => {
     navigation.navigate("Home");
-}
+  }
 
   useFocusEffect(
     useCallback(() => {
@@ -26,16 +25,16 @@ export default function BusquedaScreen({ navigation }) {
   );
 
   return (
-          <SafeAreaView style={styles.container} backgroundColor={COLORES.fondos}>
-          <Text style={styles.title}>Seleccionar un interés</Text>
-            <ButtonFlatList
-              navigation={navigation}
-              data={categorias}
-              ruta={"Home"}
-              publicacion={false}
-            />
-            <Button title="Limpiar intereses" onPress={limpiarIntereses} color={COLORES.principalSuave}/>
-      </SafeAreaView>
+    <SafeAreaView style={styles.container} backgroundColor={COLORES.fondos}>
+      <Text style={styles.title}>Seleccionar un interés</Text>
+      <ButtonFlatList
+        navigation={navigation}
+        data={categorias}
+        ruta={"Home"}
+        publicacion={false}
+      />
+      <Button title="Limpiar intereses" onPress={limpiarIntereses} color={COLORES.principalSuave} />
+    </SafeAreaView>
   );
 }
 

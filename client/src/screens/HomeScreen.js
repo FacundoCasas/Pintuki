@@ -1,19 +1,14 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import PublicacionFlatList from "../components/PublicacionFlatList.js";
+import React, { useState, useCallback } from 'react';
 import ButtonFlatList from '../components/ButtonFlatList.js';
 import { getPublicaciones } from "../services/PublicacionService.js";
 //import { useIsFocused } from '@react-navigation/native';
 import { useFocusEffect } from '@react-navigation/native';
 import { COLORES } from "../globalStyles/globalStyles";
-import LogoPintuki from '../components/LogoPintuki.js';
 import {
   StyleSheet,
-  Text,
   View,
   SafeAreaView,
   Button,
-  Image,
-  FlatList
 } from "react-native";
 
 export default function HomeScreen({ navigation, route }) {
@@ -46,13 +41,13 @@ export default function HomeScreen({ navigation, route }) {
   let categoria = null;
   let publicacionesPorMostrar;
 
-  if(route.params !== undefined){
+  if (route.params !== undefined) {
     categoria = route.params.categoriaTitulo
   }
 
-  if(categoria !== null){
+  if (categoria !== null) {
     publicacionesPorMostrar = publicaciones.filter(publicacion => publicacion.etiquetas === categoria)
-  } else{
+  } else {
     publicacionesPorMostrar = publicaciones;
   }
 
@@ -78,8 +73,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-around",
     alignItems: "center",
-   /*  marginHorizontal: "5%",
-    margin: 20, */
+    /*  marginHorizontal: "5%",
+     margin: 20, */
   },
   title: {
     fontWeight: "bold",

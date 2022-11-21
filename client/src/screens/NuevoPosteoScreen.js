@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, SafeAreaView } from 'react-native';
-import { VStack,  Input,  Button, NativeBaseProvider, Select, Box, CheckIcon } from "native-base";
+import { VStack, Input, Button, NativeBaseProvider, Select, Box, CheckIcon } from "native-base";
 import { postPublicacion } from '../services/PublicacionService';
 import SeleccionarImagen from '../components/SeleccionarImagen'
 import { COLORESNB } from '../globalStyles/globalStyles';
-
 import { useAuth } from '../context/userContext';
 
 export default function App({ navigation }) {
@@ -29,7 +28,7 @@ export default function App({ navigation }) {
     limpiarStates()
   };
 
-  const limpiarStates = () =>{
+  const limpiarStates = () => {
     setSelectedImage(null)
     setTitulo('')
     //cambiar con el componente nuevo
@@ -38,46 +37,46 @@ export default function App({ navigation }) {
 
   return (
     <NativeBaseProvider>
-        <View style={styles.container} backgroundColor={COLORESNB.fondos}>
-        
+      <View style={styles.container} backgroundColor={COLORESNB.fondos}>
+
         <SafeAreaView>
           <SeleccionarImagen
             selectedImage={selectedImage}
             setSelectedImage={setSelectedImage}
           />
           <VStack space={3} >
-          <Input 
-            type="text"
-            onChangeText={setTitulo}
-            value={titulo} 
-            placeholder="Titulo"
-          />
-        <Select selectedValue={categoria} accessibilityLabel="Seleccionar etiqueta" placeholder="Seleccionar etiqueta" _selectedItem={{
-            bg: "warning.500",
-            endIcon: <CheckIcon size="5" />
-          }} mt={1} onValueChange={itemValue => setCategoria(itemValue)}>
-            <Select.Item label="Arte" value="Arte" />
-            <Select.Item label="Cine" value="Cine" />
-            <Select.Item label="Comida" value="Comida" />
-            <Select.Item label="Meme" value="Meme" />
-            <Select.Item label="Escultura" value="Escultura" />
-            <Select.Item label="Fotografia" value="Fotografia" />
-            <Select.Item label="Juegos" value="Juegos" />
-            <Select.Item label="Paisaje" value="Paisaje" />
-            <Select.Item label="Tatuajes" value="Tatuajes" />
-            <Select.Item label="Animales" value="Animales" />
-        </Select>
-          <Button mb="10" mt="2" colorScheme={COLORESNB.algoScheme} onPress={publicar} >
-            Publicar
-          </Button>
+            <Input
+              type="text"
+              onChangeText={setTitulo}
+              value={titulo}
+              placeholder="Titulo"
+            />
+            <Select selectedValue={categoria} accessibilityLabel="Seleccionar etiqueta" placeholder="Seleccionar etiqueta" _selectedItem={{
+              bg: "warning.500",
+              endIcon: <CheckIcon size="5" />
+            }} mt={1} onValueChange={itemValue => setCategoria(itemValue)}>
+              <Select.Item label="Arte" value="Arte" />
+              <Select.Item label="Cine" value="Cine" />
+              <Select.Item label="Comida" value="Comida" />
+              <Select.Item label="Meme" value="Meme" />
+              <Select.Item label="Escultura" value="Escultura" />
+              <Select.Item label="Fotografia" value="Fotografia" />
+              <Select.Item label="Juegos" value="Juegos" />
+              <Select.Item label="Paisaje" value="Paisaje" />
+              <Select.Item label="Tatuajes" value="Tatuajes" />
+              <Select.Item label="Animales" value="Animales" />
+            </Select>
+            <Button mb="10" mt="2" colorScheme={COLORESNB.algoScheme} onPress={publicar} >
+              Publicar
+            </Button>
           </VStack>
         </SafeAreaView>
 
-        
+
       </View>
     </NativeBaseProvider>
 
-   
+
   );
 }
 
