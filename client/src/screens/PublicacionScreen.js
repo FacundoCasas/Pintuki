@@ -36,13 +36,7 @@ export default function App({ route, navigation }) {
   }, []);
 
   const botonFavoritos = async () => {
-    //agregarFavoritos del usuario logeado
-    console.log(
-      "Agregando a fav publicaciones fav",
-      user.publicacionesFavoritas
-    );
-
-    if (publicacionNoEstaEnFavoritos()) {
+     if (publicacionNoEstaEnFavoritos()) {
       const data = {
         username: user.usuario,
         publicacionId: publicacion.id,

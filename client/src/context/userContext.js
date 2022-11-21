@@ -29,12 +29,13 @@ export const UserProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    setUser(
-      usuario = "",
-      contraseni = "",
-      fotoPerfil = "",
-      publicacionesFavoritas = [],
-      publicacionesCreadas = []
+    setUser({
+      usuario : "",
+      contrasenia : "",
+      fotoPerfil : "",
+      publicacionesFavoritas : [],
+      publicacionesCreadas : []
+    }
     );
     setIsAuthenticated(false);
   }

@@ -1,7 +1,13 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, FlatList, View } from "react-native";
+import { 
+    StyleSheet, 
+    SafeAreaView, 
+    FlatList, 
+    View 
+} from "react-native";
 import PublicacionFlatList from "../components/PublicacionFlatList.js";
 import CategoriaFlatList from "../components/CategoriaFlatList.js";
+
 const ButtonFlatList = ({ navigation, data, ruta, publicacion }) => {
 
     const goToPublicacion = (id) => {
@@ -49,10 +55,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "space-around",
         alignItems: "center",
-        /* padding:10,
-        height:20,
-        marginHorizontal: "5%",
-        margin: 20, */
     },
     title: {
         fontWeight: "bold",

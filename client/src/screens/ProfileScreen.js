@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { useFocusEffect } from "@react-navigation/native";
+import React, { useEffect, useState/* , useCallback */ } from "react";
+//import { useFocusEffect } from "@react-navigation/native";
 import {
   Box,
   Text,
@@ -17,54 +17,35 @@ import {
 } from "../services/PublicacionService";
 
 export default function ProfileScreen({ navigation }) {
-  // const [userLogueado, setUserLogueado] = useState(""); ---> Este userLogueado tiene que venir del contexto, para eso traigo el user del contexto usando el hook de useAuth()
   const { user, logOut, isAuthenticated } = useAuth();
-
-  const [nombreUsuario, setNombreUsuario] = useState(""); // Esto finalmente no se está usando, se utiliza el user que viene del contexto para sacar el nombre
-
-  //const [publicacionesFavoritas, setPublicacionesFavoritas] = useState(null);
-
   const [publicacionesaMostrar, setPublicacionesaMostrar] = useState([]);
   const [isFavouriteSelected, setIsFavouriteSelected] = useState(true);
-
 
   useEffect(() => {
     fetchFavoritos();
   }, []);
 
-  useFocusEffect(
-    useCallback(() => {
-      setNombreUsuario(user.usuario); // Esto no se está usando 
-    }, [])
-  );
-
   const fetchFavoritos = async () => {
-    if(isAuthenticated){
+    if (isAuthenticated) {
       const data = {
         ids: user.publicacionesFavoritas,
       };
       setPublicacionesaMostrar(await getPublicacionesFavoritas(data));
       setIsFavouriteSelected(true)
-      console.log(publicacionesaMostrar);
     }
   };
 
   const fetchCreadas = async () => {
     setPublicacionesaMostrar(await getPublicacionesCreadas(user.usuario));
     setIsFavouriteSelected(false)
-    console.log(publicacionesaMostrar);
   };
 
   const logOutOnClick = () => {
-      logOut();
-      console.log("isAuthenticated", isAuthenticated);
-      navigation.navigate("HomeStack", { screen: "Home" }); 
+    logOut();
+    navigation.navigate("HomeStack", { screen: "Home" });
 
   };
 
-  if (isAuthenticated) {
-    console.log("ProfileScreen: user en contexto: ", user);
-  }
   return (
     <>
       {isAuthenticated ? (
@@ -97,7 +78,7 @@ export default function ProfileScreen({ navigation }) {
                   }}
                   alt="LogoPintuki"
                 />
-                <Text>¡Hola {user.usuario}!</Text>  
+                <Text>¡Hola {user.usuario}!</Text>
               </Center>
               <Button.Group
                 isAttached

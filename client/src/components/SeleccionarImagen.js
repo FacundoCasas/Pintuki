@@ -1,8 +1,17 @@
 import React from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
-import { NativeBaseProvider, Button, VStack, Center, Box } from 'native-base';
+import {
+  StyleSheet,
+  Image
+} from "react-native";
+import {
+  NativeBaseProvider,
+  Button,
+  VStack,
+  Center,
+  Box
+} from 'native-base';
 import { COLORESNB } from '../globalStyles/globalStyles';
 
 const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
@@ -23,7 +32,7 @@ const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
       return;
     }
 
-    setSelectedImage({ localUri: pickerResult.assets[0].uri});
+    setSelectedImage({ localUri: pickerResult.assets[0].uri });
   };
   const openShareDialogAsync = async () => {
     if (!(await Sharing.isAvailableAsync())) {
@@ -38,42 +47,40 @@ const SeleccionarImagen = ({ selectedImage, setSelectedImage }) => {
     return (
       <NativeBaseProvider>
         <Center flex={1} px="3" w="100%" backgroundColor={COLORESNB.fondos}>
-          
-            <VStack space={3} mt="5">
+
+          <VStack space={3} mt="5">
+            <Box>
               <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
               <Button.Group isAttached colorScheme={COLORESNB.secundarioScheme} mx={{
-                  base: "auto",
-                  md: 0
-                }} size="sm">
+                base: "auto",
+                md: 0
+              }} size="sm">
                 <Button mt="2" colorScheme={COLORESNB.secundarioScheme} onPress={openShareDialogAsync} >
-                Compartir Foto
+                  Compartir foto
                 </Button>
-
                 <Button variant="outline" mt="2" colorScheme={COLORESNB.secundarioScheme} onPress={openImagePickerAsync} >
-                Cambiar Foto
+                  Cambiar foto
                 </Button>
               </Button.Group>
-            </VStack>
-          
+            </Box>
+          </VStack>
         </Center>
       </NativeBaseProvider>
     );
   }
 
   return (
-    
-      <NativeBaseProvider>
-        <Center flex={1} px="3" w="100%">
-        <VStack space={3} mt="5">
-          <Image source={{ uri: 'https://i.imgur.com/TkIrScD.png' }} style={styles.logo} />
 
-            <Button colorScheme={COLORESNB.secundarioScheme} onPress={openImagePickerAsync} >
-            Selecciona una Foto
-            </Button>
-        </VStack>
-        </Center>
-      </NativeBaseProvider>
-    
+    <Center flex={1} px="3" w="100%" backgroundColor={COLORESNB.fondos}>
+      <VStack space={3} mt="5">
+        <Image source={{ uri: 'https://i.ibb.co/BVxfsLD/imagepickerlogo.png' }} style={styles.logo} />
+
+        <Button colorScheme={COLORESNB.secundarioScheme} onPress={openImagePickerAsync} >
+          Selecciona una foto
+        </Button>
+      </VStack>
+    </Center>
+
   );
 
 }

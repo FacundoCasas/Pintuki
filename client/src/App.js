@@ -8,7 +8,6 @@ import { UserProvider } from "./context/userContext";
 export default function App() {
 
   return (
-
     <NativeBaseProvider>
       <UserProvider>
         <NavigationContainer>
@@ -16,6 +15,5 @@ export default function App() {
         </NavigationContainer>
       </UserProvider>
     </NativeBaseProvider>
-
   );
 }

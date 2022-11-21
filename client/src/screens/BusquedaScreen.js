@@ -1,5 +1,10 @@
 import React, { useState, useCallback } from 'react';
-import { StyleSheet, Text, Button, SafeAreaView } from "react-native";
+import { 
+  StyleSheet, 
+  Text, 
+  Button, 
+  SafeAreaView 
+} from "react-native";
 import { getCategorias } from "../services/CategoriaService.js";
 import ButtonFlatList from "../components/ButtonFlatList.js";
 import { useFocusEffect } from '@react-navigation/native';

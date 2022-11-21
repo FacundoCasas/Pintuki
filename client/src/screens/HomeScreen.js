@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import ButtonFlatList from '../components/ButtonFlatList.js';
 import { getPublicaciones } from "../services/PublicacionService.js";
 import { useFocusEffect } from '@react-navigation/native';
-import { COLORES,COLORESNB } from "../globalStyles/globalStyles";
+import { COLORES, COLORESNB } from "../globalStyles/globalStyles";
 import {
   StyleSheet,
   View,
