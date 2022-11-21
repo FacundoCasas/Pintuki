@@ -1,24 +1,20 @@
 import React, { useState, useCallback } from 'react';
 import ButtonFlatList from '../components/ButtonFlatList.js';
 import { getPublicaciones } from "../services/PublicacionService.js";
-//import { useIsFocused } from '@react-navigation/native';
 import { useFocusEffect } from '@react-navigation/native';
-import { COLORES } from "../globalStyles/globalStyles";
+import { COLORES,COLORESNB } from "../globalStyles/globalStyles";
 import {
   StyleSheet,
   View,
   SafeAreaView,
   Button,
+  Spinner,
+  Box
 } from "react-native";
 
 export default function HomeScreen({ navigation, route }) {
 
   const [publicaciones, setPublicaciones] = useState([]);
-  //const isFocused = useIsFocused();
-
-  //Agregar const publicaciones a mostrar
-
-  //Si el parametro titulo categoria esta vacio muestra todas las publicaciones, sino filtra las categorias
 
   const goToBusqueda = () => {
     navigation.navigate("Busqueda");
@@ -26,10 +22,7 @@ export default function HomeScreen({ navigation, route }) {
 
   const fetch = async () => {
     const response = await getPublicaciones();
-    //if tituloCategoria is null
     setPublicaciones(response)
-    //else filtrar por titulo categoria
-    //SetPublicaciones
   }
 
   useFocusEffect(
@@ -56,14 +49,18 @@ export default function HomeScreen({ navigation, route }) {
       <View style={styles.buttonContainer}>
         <Button title="Seleccionar intereses" onPress={goToBusqueda} color={COLORES.principalSuave} />
       </View>
-
-      <ButtonFlatList
-        navigation={navigation}
-        data={publicacionesPorMostrar}
-        ruta={"Publicacion"}
-        publicacion={true}
-      />
-
+      {publicacionesPorMostrar ? (
+        <ButtonFlatList
+          navigation={navigation}
+          data={publicacionesPorMostrar}
+          ruta={"Publicacion"}
+          publicacion={true}
+        />
+      ):(
+        <Box style={styles.container}>
+          <Spinner size="lg" color={COLORESNB.secundario}/>
+        </Box> 
+      )}
     </SafeAreaView>
   );
 }
@@ -73,8 +70,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-around",
     alignItems: "center",
-    /*  marginHorizontal: "5%",
-     margin: 20, */
   },
   title: {
     fontWeight: "bold",
@@ -89,7 +84,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     width: "100%",
-    /* marginBottom: 20, */
   },
   image: {
     width: "80%",

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, SafeAreaView } from 'react-native';
-import { VStack, Input, Button, NativeBaseProvider, Select, Box, CheckIcon } from "native-base";
+import { VStack, Input, Button, NativeBaseProvider, Select, CheckIcon } from "native-base";
 import { postPublicacion } from '../services/PublicacionService';
 import SeleccionarImagen from '../components/SeleccionarImagen'
 import { COLORESNB } from '../globalStyles/globalStyles';
@@ -10,13 +10,11 @@ export default function App({ navigation }) {
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [titulo, setTitulo] = useState('');
-  //Tienen que consumirse de la base y agregar el componente de categorias
   const [categoria, setCategoria] = useState('');
 
   const { user } = useAuth();
 
   const publicar = async () => {
-    //el id tiene que ser determinado en el back y el usuario tiene que sacarse el harcodeo
     let publicacion = {
       url: selectedImage,
       titulo: titulo,
@@ -31,7 +29,6 @@ export default function App({ navigation }) {
   const limpiarStates = () => {
     setSelectedImage(null)
     setTitulo('')
-    //cambiar con el componente nuevo
     setCategoria('')
   }
 
@@ -71,8 +68,6 @@ export default function App({ navigation }) {
             </Button>
           </VStack>
         </SafeAreaView>
-
-
       </View>
     </NativeBaseProvider>
 

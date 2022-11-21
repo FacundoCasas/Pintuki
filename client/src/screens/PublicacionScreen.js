@@ -10,8 +10,7 @@ import {
   AspectRatio,
   FavouriteIcon,
   useToast,
-  Spinner,
-  Center
+  Spinner
 } from "native-base";
 import { getPublicacion } from "../services/PublicacionService";
 import { agregarFavoritos } from "../services/UsuarioService";

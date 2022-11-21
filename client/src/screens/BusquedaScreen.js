@@ -3,7 +3,8 @@ import { StyleSheet, Text, Button, SafeAreaView } from "react-native";
 import { getCategorias } from "../services/CategoriaService.js";
 import ButtonFlatList from "../components/ButtonFlatList.js";
 import { useFocusEffect } from '@react-navigation/native';
-import { COLORES } from '../globalStyles/globalStyles.js';
+import { COLORES, COLORESNB } from '../globalStyles/globalStyles.js';
+import { Spinner, Box } from "react-native";
 
 export default function BusquedaScreen({ navigation }) {
 
@@ -27,12 +28,18 @@ export default function BusquedaScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container} backgroundColor={COLORES.fondos}>
       <Text style={styles.title}>Seleccionar un interés</Text>
-      <ButtonFlatList
-        navigation={navigation}
-        data={categorias}
-        ruta={"Home"}
-        publicacion={false}
-      />
+      {categorias ? (
+        <ButtonFlatList
+          navigation={navigation}
+          data={categorias}
+          ruta={"Home"}
+          publicacion={false}
+        />
+      ) : (
+        <Box style={styles.container}>
+          <Spinner size="lg" color={COLORESNB.secundario} />
+        </Box>
+      )}
       <Button title="Limpiar intereses" onPress={limpiarIntereses} color={COLORES.principalSuave} />
     </SafeAreaView>
   );
