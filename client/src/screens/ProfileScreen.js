@@ -39,12 +39,14 @@ export default function ProfileScreen({ navigation }) {
   );
 
   const fetchFavoritos = async () => {
-    const data = {
-      ids: user.publicacionesFavoritas,
-    };
-    setPublicacionesaMostrar(await getPublicacionesFavoritas(data));
-    setIsFavouriteSelected(true)
-    console.log(publicacionesaMostrar);
+    if(isAuthenticated){
+      const data = {
+        ids: user.publicacionesFavoritas,
+      };
+      setPublicacionesaMostrar(await getPublicacionesFavoritas(data));
+      setIsFavouriteSelected(true)
+      console.log(publicacionesaMostrar);
+    }
   };
 
   const fetchCreadas = async () => {
