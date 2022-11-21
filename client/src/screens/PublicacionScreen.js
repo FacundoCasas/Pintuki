@@ -8,9 +8,10 @@ import {
   Image,
   Box,
   AspectRatio,
-  Heading,
   FavouriteIcon,
   useToast,
+  Spinner,
+  Center
 } from "native-base";
 import { getPublicacion } from "../services/PublicacionService";
 import { agregarFavoritos } from "../services/UsuarioService";
@@ -68,18 +69,20 @@ export default function App({ route, navigation }) {
   const goBack = () => {
     navigation.goBack();
   };
+
   return (
-    publicacion && (
+    <>
+    {publicacion ? (
       <Box style={styles.container}>
         <AspectRatio w="100%" ratio={14 / 16}>
           <Image source={{ uri: publicacion.url }} alt="image" />
         </AspectRatio>
-        <HStack m="5">
-          <VStack>
-            <Heading>{publicacion.autor}</Heading>
-            <Text>{publicacion.titulo}</Text>
+        <HStack m="5" marginHorizontal={10}>
+          <VStack  style={{ flex: 1, alignItems: 'flex-start' }}>
+            <Text fontSize="xl" bold>{publicacion.autor}</Text>
+            <Text fontSize="md">{publicacion.titulo}</Text>
           </VStack>
-          <Box m="5" px="30%" />
+          <Box/>
           <>
             {isAuthenticated && publicacion && ( //Acá uní estos dos condicionales en uno, no hace falta que sean dos sentencias diferentes
               <>
@@ -105,7 +108,13 @@ export default function App({ route, navigation }) {
           </>
         </HStack>
       </Box>
+    ) : ( 
+      <Box style={styles.container}>
+        <Spinner size="lg" color={COLORESNB.secundario}/>
+      </Box>
     )
+    }
+    </>
   );
 }
 
