@@ -27,7 +27,7 @@ export default function BusquedaScreen({ navigation }) {
 
   return (
           <SafeAreaView style={styles.container} backgroundColor={COLORES.fondos}>
-          <Text style={styles.title}>Seleccionar una categoria</Text>
+          <Text style={styles.title}>Seleccionar un interés</Text>
             <ButtonFlatList
               navigation={navigation}
               data={categorias}

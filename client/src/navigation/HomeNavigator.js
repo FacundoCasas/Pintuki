@@ -14,7 +14,7 @@ export default function HomeNavigator() {
         name="Home"
         component={HomeScreen}
         options={{
-          headerTitle: "Bienvenido a Pintuki",
+          headerTitle: "Pintuki",
           headerTintColor: "white",
           headerStyle: {
             backgroundColor: COLORES.principal,

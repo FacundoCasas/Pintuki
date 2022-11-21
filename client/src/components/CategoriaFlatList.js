@@ -18,12 +18,12 @@ const CategoriaFlatList = ({item,onPress}) => {
 const styles = StyleSheet.create({
     container: {
       justifyContent: 'center',
-      borderRadius: 10,
+      borderRadius: 8,
       padding:10,
       borderColor: "black",
     },
     description: {
-        fontSize: 17,
+        fontSize: 20,
         fontWeight: "bold",
         letterSpacing:1,
         color: "white",
