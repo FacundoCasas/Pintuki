@@ -1,10 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { 
-    Button, 
-    Text, 
-    VStack 
-} from "native-base";
+import { Button, Text, VStack } from "native-base";
 
 const CategoriaFlatList = ({ item, onPress }) => {
 
