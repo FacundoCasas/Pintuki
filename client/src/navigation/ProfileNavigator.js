@@ -1,7 +1,8 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginScreen from "../screens/LoginScreen";
+import LogInScreen from "../screens/LoginScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import SignInScreen from "../screens/SignInScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,13 +17,22 @@ export default function ProfileNavigator() {
         }}
       />
       <Stack.Screen
-        name="Login"
-        component={LoginScreen}
+        name="LogIn"
+        component={LogInScreen}
         options={{
           title: "",
           headerTransparent: true,
         }}
       />
+      <Stack.Screen
+        name="SignIn"
+        component={SignInScreen}
+        options={{
+          title: "",
+          headerTransparent: true,
+        }}
+      />
+
     </Stack.Navigator>
   );
 }

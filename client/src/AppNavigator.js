@@ -2,17 +2,19 @@ import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeNavigator from "./navigation/HomeNavigator";
 import ProfileNavigator from "./navigation/ProfileNavigator";
-
+import { COLORES } from "./globalStyles/globalStyles";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import NotificationsScreen from "./screens/NotificationsScreen";
+import NuevoPosteoScreen from "./screens/NuevoPosteoScreen";
+import { useAuth } from "./context/userContext";
 
 const Tab = createBottomTabNavigator();
 
 export default function AppNavigator() {
+
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: "teal",
+        tabBarActiveTintColor: COLORES.principal,
         tabBarInactiveTintColor: "grey",
       }}
     >
@@ -28,6 +30,17 @@ export default function AppNavigator() {
         }}
       />
       <Tab.Screen
+        name="NuevoPosteo"
+        component={NuevoPosteoScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: "Nuevo posteo",
+          tabBarIcon: ({ size, color }) => (
+            <MaterialCommunityIcons name="plus" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="ProfileStack"
         component={ProfileNavigator}
         options={{
@@ -35,17 +48,6 @@ export default function AppNavigator() {
           tabBarLabel: "Mi perfil",
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons name="account" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Notifications"
-        component={NotificationsScreen}
-        options={{
-          headerShown: false,
-          tabBarLabel: "Notificaciones",
-          tabBarIcon: ({ size, color }) => (
-            <MaterialCommunityIcons name="bell" color={color} size={size} />
           ),
         }}
       />

@@ -1,32 +1,67 @@
-import React from "react";
+import React, { useState, useCallback } from 'react';
+import ButtonFlatList from '../components/ButtonFlatList.js';
+import { getPublicaciones } from "../services/PublicacionService.js";
+import { useFocusEffect } from '@react-navigation/native';
+import { COLORES, COLORESNB } from "../globalStyles/globalStyles";
 import {
   StyleSheet,
-  Text,
   View,
+  SafeAreaView,
   Button,
-  Image,
+  Spinner,
+  Box
 } from "react-native";
 
-export default function HomeScreen({ navigation }) {
-  const goToDetails = () => {
-    navigation.navigate("Details");
+export default function HomeScreen({ navigation, route }) {
+
+  const [publicaciones, setPublicaciones] = useState([]);
+
+  const goToBusqueda = () => {
+    navigation.navigate("Busqueda");
   };
 
+  const fetch = async () => {
+    const response = await getPublicaciones();
+    setPublicaciones(response)
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      fetch();
+    }, [])
+  )
+
+  let categoria = null;
+  let publicacionesPorMostrar;
+
+  if (route.params !== undefined) {
+    categoria = route.params.categoriaTitulo
+  }
+
+  if (categoria !== null) {
+    publicacionesPorMostrar = publicaciones.filter(publicacion => publicacion.etiquetas === categoria)
+  } else {
+    publicacionesPorMostrar = publicaciones;
+  }
+
   return (
-    <View style={styles.container}>
-      <Image
-        source={require("../assets/astronaut.png")}
-        style={styles.image}
-        resizeMode="contain"
-      />
-      <Text style={styles.title}>Aplicación NT2</Text>
-      <Text style={styles.description}>
-        Esta es la aplicación de prueba del curso C
-      </Text>
+    <SafeAreaView style={styles.container} backgroundColor={COLORES.fondos}>
       <View style={styles.buttonContainer}>
-        <Button title="Conocer más" onPress={goToDetails} color="teal" />
+        <Button title="Seleccionar intereses" onPress={goToBusqueda} color={COLORES.principalSuave} />
       </View>
-    </View>
+      {publicacionesPorMostrar ? (
+        <ButtonFlatList
+          navigation={navigation}
+          data={publicacionesPorMostrar}
+          ruta={"Publicacion"}
+          publicacion={true}
+        />
+      ):(
+        <Box style={styles.container}>
+          <Spinner size="lg" color={COLORESNB.secundario}/>
+        </Box> 
+      )}
+    </SafeAreaView>
   );
 }
 
@@ -35,7 +70,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-around",
     alignItems: "center",
-    marginHorizontal: "5%",
   },
   title: {
     fontWeight: "bold",
@@ -49,7 +83,7 @@ const styles = StyleSheet.create({
     paddingBottom: "2%",
   },
   buttonContainer: {
-    width: "90%",
+    width: "100%",
   },
   image: {
     width: "80%",

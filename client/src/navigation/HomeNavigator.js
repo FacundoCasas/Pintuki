@@ -1,25 +1,45 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import DetailsScreen from "../screens/DetailsScreen";
-import DrawerNavigator from "./DrawerNavigator";
+import BusquedaScreen from "../screens/BusquedaScreen";
+import HomeScreen from "../screens/HomeScreen";
+import PublicacionScreen from "../screens/PublicacionScreen"
+import { COLORES } from "../globalStyles/globalStyles";
 
 const Stack = createNativeStackNavigator();
 
 export default function HomeNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Drawer">
+    <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
-        name="Drawer"
-        component={DrawerNavigator}
+        name="Home"
+        component={HomeScreen}
         options={{
-          headerShown: false,
+          headerTitle: "Pintuki",
+          headerTintColor: "white",
+          headerStyle: {
+            backgroundColor: COLORES.principal,
+          },
+          headerTitleAlign: "center",
         }}
       />
       <Stack.Screen
-        name="Details"
-        component={DetailsScreen}
+        name="Busqueda"
+        component={BusquedaScreen}
         options={{
-          headerShown: false,
+          headerShown: true,
+          title: "Busqueda de Intereses",
+          headerTintColor: "white",
+          headerStyle: {
+            backgroundColor: COLORES.principal,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Publicacion"
+        component={PublicacionScreen}
+        options={{
+          title: "",
+          headerTransparent: true,
         }}
       />
     </Stack.Navigator>
